@@ -1,17 +1,17 @@
 /* 
  *  This example shows how to use WPA2 enterprise 
  *  Written by: Jeroen Beemster
- *  12 July 2017
- *  Version 1.00
+ *  Edited by: Martin Chlebovec
+ *  03 Jun 2018
  */
 
 #include "esp_wpa2.h"
 #include <WiFi.h>
 
 const char* ssid = "Eduroam"; // your ssid
-#define EAP_ID "mc364ve@tuke.sk"
-#define EAP_USERNAME "mc364ve@tuke.sk"
-#define EAP_PASSWORD "sunavec"
+#define EAP_ID "xxx@tuke.sk"
+#define EAP_USERNAME "xxx@tuke.sk"
+#define EAP_PASSWORD "pass"
 
 void setup() {
     Serial.begin(115200);
