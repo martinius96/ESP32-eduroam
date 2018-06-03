@@ -8,7 +8,7 @@
 #include "esp_wpa2.h"
 #include <WiFi.h>
 
-const char* ssid = "Eduroam"; // your ssid
+const char* ssid = "eduroam"; // your ssid
 #define EAP_ID "xxx@tuke.sk"
 #define EAP_USERNAME "xxx@tuke.sk"
 #define EAP_PASSWORD "pass"
