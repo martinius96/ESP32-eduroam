@@ -1,6 +1,5 @@
 //Sketch edited by: Martin Chlebovec
 //My website: https://arduino.php5.sk
-//Donate me: https://www.paypal.me/Chlebovec
 #include "esp_wpa2.h"
 #include <WiFi.h>
 String line; //variable for response
