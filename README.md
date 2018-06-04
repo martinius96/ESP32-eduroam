@@ -2,9 +2,12 @@
 * Eduroam wifi connection with university login identity
 
 # Usage
-* Change USERNAME AND ID (Identity) to yourlogin@youruniversity.domain
+* Change USERNAME AND ID (Identity) to yourlogin@youruniversity.domain - example: login@tuke.sk (For Technical University in Košice - Slovakia)
 * Change password to your Eduroam password
-* Enjoy!
+* Upload sketch and enjoy!
 
-# Tested locations
+# Verified (working) locations
 * Technical University in Košice - Working
+
+# Boards
+* Tested Under ESP32 Devkit v1
