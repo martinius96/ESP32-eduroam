@@ -6,7 +6,8 @@
 String line; //variable for response
 const char* ssid = "eduroam"; // Eduroam SSID
 const char* host = "arduino.php5.sk"; //external server domain
-#define EAP_IDENTITY "login@university.com" //identity@youruniversity.domain
+#define EAP_IDENTITY "login@university.domain" //identity@youruniversity.domain
+//#define EAP_IDENTITY "anonymous@university.domain" - anonymous identity for university
 #define EAP_PASSWORD "password" //your Eduroam password
 void setup() {
     Serial.begin(115200);
