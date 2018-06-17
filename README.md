@@ -6,7 +6,7 @@
 * PASSWORD = your password :-)
 
 # Usage
-* Change IDENTITY
+* Change IDENTITY or use anonymous identity --> anonymous@university.domain
 * Change password
 * Upload sketch and enjoy!
 
