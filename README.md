@@ -12,6 +12,8 @@
 
 # Tested locations
 * Technical University in Košice (Slovakia) - Working
+* Slovak Technical University in Bratislava (Slovakia) - Working
+* University of Antwerp (Belgium) - Working
 
 # Testing sketch was user on Network with methodds
 * PEAP on 1st step
