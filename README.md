@@ -1,5 +1,6 @@
 # ESP32-Eduroam
 * Eduroam wifi connection with university login identity
+* Working under RADIUS, not under TACACS.
 
 # Format
 * IDENTITY = nickname@organization.com (for instance: nickname@tuke.sk)
