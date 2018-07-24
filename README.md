@@ -15,6 +15,7 @@
 * Technical University in Košice (Slovakia) - Working
 * Slovak Technical University in Bratislava (Slovakia) - Working
 * University of Antwerp (Belgium) - Working
+* UPV Universitat Politècnica de València (Spain) - Working
 * Zeroshell at home - Not working, error in handshake - timeout
 
 # Testing sketch was user on Network with methodds
