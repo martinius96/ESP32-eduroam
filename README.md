@@ -3,6 +3,7 @@
 * Working under Eduroam networks under FreeRadius service for 802.1x
 * Eduroam is using: PEAP + MsCHAPv2
 * **Inform me after you use that .ino file in your university if it is working! Email below**
+* Eduroam example with HTTP connection is now available in official repository as example named WifiClientEnterprise: https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/examples/WiFiClientEnterprise/WiFiClientEnterprise.ino
 
 # Format
 * IDENTITY = nickname@university.domain (for instance: nickname@tuke.sk)
