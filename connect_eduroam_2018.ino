@@ -6,7 +6,6 @@ String line; //variable for response
 const char* ssid = "eduroam"; // Eduroam SSID
 const char* host = "arduino.php5.sk"; //external server domain
 #define EAP_IDENTITY "login@university.domain" //identity@youruniversity.domain
-//#define EAP_IDENTITY "anonymous@university.domain" - anonymous identity for university
 #define EAP_PASSWORD "password" //your Eduroam password
 void setup() {
     Serial.begin(115200);
@@ -23,7 +22,6 @@ void setup() {
    Serial.println("MAC address: ");
    Serial.println(WiFi.macAddress()); //Print our MAC address of our device
     WiFi.begin(ssid); //connect to Eduroam function
- WiFi.setHostname("ESP32Name"); //set Hostname for your device - not neccesary
     while (WiFi.status() != WL_CONNECTED) {
         delay(500);
         Serial.print(".");
