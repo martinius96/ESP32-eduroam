@@ -1,4 +1,4 @@
-Sketch provided by: Thijs VANDENRYT
+Sketch provided by: T. Vandenryt
 #include "esp_wpa2.h"
 #include <WiFi.h>
 String line; //variable for response
