@@ -24,7 +24,7 @@ void setup() {
 	WiFi.enableSTA(true);
 	
 	esp_wpa2_config_t config = WPA2_CONFIG_INIT_DEFAULT();
-	if (esp_wifi_sta_wpa2_ent_enable(&config) != ESP_OK) { /
+	if (esp_wifi_sta_wpa2_ent_enable(&config) != ESP_OK) {
 		Serial.println("WPA2 Settings Not OK");
 	}
 	
