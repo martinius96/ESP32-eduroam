@@ -20,7 +20,7 @@
 * University of Antwerp (Belgium) - Working
 * UPV Universitat Politècnica de València (Spain) - Working
 * Zeroshell at home - Not working, error in handshake - timeout
-* Hasselt University (Belgium) - Working with 2018-fix sketch, use first time with command set_new_password
+* Hasselt University (Belgium) - Working with 2018-fix sketch - Thanks to T. Vandenryt for trying different ways to connect to Eduroam network
 
 # Sucessful connection
  ![alt text](https://i.nahraj.to/f/24Kc.png)
