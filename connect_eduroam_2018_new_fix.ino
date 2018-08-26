@@ -13,7 +13,7 @@ void setup() {
 	Serial.println("Connecting to: ");
 	Serial.println(ssid);
 	WiFi.disconnect(true);  //disconnect from wifi to set new wifi connection
-
+	WiFi.mode(WIFI_STA);
 	error += esp_wifi_sta_wpa2_ent_set_identity((uint8_t *)EAP_IDENTITY, strlen(EAP_IDENTITY));
 	error += esp_wifi_sta_wpa2_ent_set_username((uint8_t *)EAP_IDENTITY, strlen(EAP_IDENTITY));
 	//error += esp_wifi_sta_wpa2_ent_set_new_password((uint8_t *)EAP_PASSWORD, strlen(EAP_PASSWORD));  //First time running, i think i needed to set this, although i received an error from the server, claiming the password was not set?
