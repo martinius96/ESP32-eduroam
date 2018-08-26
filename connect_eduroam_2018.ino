@@ -14,6 +14,7 @@ void setup() {
     Serial.print("Connecting to network ");
     Serial.println(ssid);
     WiFi.disconnect(true);  //disconnect form wifi to set new wifi connection
+    WiFi.mode(WIFI_STA); //fix
     esp_wifi_sta_wpa2_ent_set_identity((uint8_t *)EAP_IDENTITY, strlen(EAP_IDENTITY)); //provide identity
     esp_wifi_sta_wpa2_ent_set_username((uint8_t *)EAP_IDENTITY, strlen(EAP_IDENTITY)); //provide username
     esp_wifi_sta_wpa2_ent_set_password((uint8_t *)EAP_PASSWORD, strlen(EAP_PASSWORD)); //provide password
