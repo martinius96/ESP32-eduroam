@@ -1,4 +1,5 @@
 # ESP32-Eduroam
+# Sketch is working with June 2018 Arduino ESP32 core only! Latest core cannot connect board to wifi!
 * Eduroam wifi connection with university login identity
 * Working under Eduroam networks under FreeRadius service for 802.1x
 * Eduroam is using: PEAP + MsCHAPv2
