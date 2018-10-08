@@ -16,16 +16,19 @@
 * Upload sketch and enjoy!
 
 # Tested locations
-* Technical University in Košice (Slovakia) - Working
-* Slovak Technical University in Bratislava (Slovakia) - Working
-* University of Antwerp (Belgium) - Working
-* UPV Universitat Politècnica de València (Spain) - Working
-* Zeroshell at home - Not working, error in handshake - timeout
-* Hasselt University (Belgium) - Working with 2018-fix sketch - Thanks to T. Vandenryt for trying different ways to connect to Eduroam network
-
 |University|Board|Method|Result|
-| ------------- |-------------| -----|------|
-| Technical University in Košice (Slovakia|ESP32 Devkit v1|PEAP + MsCHAPv2|Working|
+|-------------|-------------| -----|------|
+|Technical University in Košice (Slovakia)|ESP32 Devkit v1|PEAP + MsCHAPv2|Working|
+|Technical University in Košice (Slovakia)|ESP32 Devmodule v4|PEAP + MsCHAPv2|Working on 6th attempt in loop|
+|Slovak Technical University in Bratislava (Slovakia)|ESP32 Devkit v1|PEAP + MsCHAPv2|Working|
+|University of Antwerp (Belgium)|Lolin32|PEAP + MsCHAPv2|Working|
+|UPV Universitat Politècnica de València (Spain)|ESP32 Devmodule v4|PEAP + MsCHAPv2|Working|
+|Local Zeroshell powered network|ESP32 Devkit v1|PEAP + MsCHAPv2|*Not working*|
+|Hasselt University (Belgium)|xxx|PEAP + MsCHAPv2|Working with fix sketch|
+|Universidad de Granada (Spain)|Lolin D32 Pro|PEAP + MsCHAPv2|Working|
+|Universidad de Granada (Spain)|Lolin D32|PEAP + MsCHAPv2|Working|
+|Universidade Federal de Santa Catarina (Brazil)|xxx|EAP-TTLS + MsCHAPv2|Working|
+
 
 # Sucessful connection
  ![alt text](https://i.nahraj.to/f/24Kc.png)
@@ -35,5 +38,8 @@
 # Contact
 * martinius96@gmail.com
 
-# Boards
-* Tested Under ESP32 Devkit v1
+# Tested boards
+* ESP32 Devkit v1
+* ESP32 Devmodule v4
+* Lolin D32
+* Lolin D32 Pro
