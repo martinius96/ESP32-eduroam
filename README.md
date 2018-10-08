@@ -23,6 +23,12 @@
 * Zeroshell at home - Not working, error in handshake - timeout
 * Hasselt University (Belgium) - Working with 2018-fix sketch - Thanks to T. Vandenryt for trying different ways to connect to Eduroam network
 
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
 # Sucessful connection
  ![alt text](https://i.nahraj.to/f/24Kc.png)
 # Unsucessful connection
