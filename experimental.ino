@@ -2,7 +2,7 @@
 //EMAIL: martinius96@gmail.com
 #include <WiFi.h> //Wifi library
 #include "esp_wpa2.h" //wpa2 library for connections to Enterprise networks
-#define EAP_IDENTITY "identity" //if connecting from another corporation, use identity@organisation.domain in Eduroam 
+#define EAP_IDENTITY "login" //if connecting from another corporation, use identity@organisation.domain in Eduroam 
 #define EAP_PASSWORD "password" //your Eduroam password
 const char* ssid = "eduroam"; // Eduroam SSID
 const char* host = "arduino.php5.sk"; //external server domain for HTTP connection after authentification
@@ -53,20 +53,19 @@ void loop() {
   Serial.print("Connecting to website: ");
   Serial.println(host);
   WiFiClient client;
-  if (client.connect(host, 80)) { // HTTP connection on port 80
-    String url = "/rele/rele1.txt"; //read .txt file with GET method  
-    Serial.print("Requesting URL: ");
-    Serial.println(url);
-    client.print(String("GET ") + url + " HTTP/1.1\r\n" + "Host: " + host + "\r\n" + "Connection: close\r\n\r\n");
-    while(client.available()) {
+  if (client.connect(host, 80)) {
+    String url = "/rele/rele1.txt";
+    client.print(String("GET ") + url + " HTTP/1.1\r\n" + "Host: " + host + "\r\n" + "User-Agent: NodeMCU\r\n" + "Connection: close\r\n\r\n");
+
+    while (client.connected()) {
       String line = client.readStringUntil('\n');
-      Serial.println(line);  
+      if (line == "\r") {
+        break;
+      }
     }
-    Serial.println();
-    Serial.println("End connection");
-    client.stop();
-    }else{
+    String line = client.readStringUntil('\n');
+   Serial.println(line);
+  }else{
       Serial.println("Connection unsucessful");
     }  
 }
-
