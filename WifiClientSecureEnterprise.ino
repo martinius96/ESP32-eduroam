@@ -1,6 +1,8 @@
 /*|----------------------------------------------------------|*/
 /*|WORKING EXAMPLE FOR HTTPS CONNECTION                      |*/
-/*|EMAIL me: martinius96@gmail.com                           |*/
+/*|EMAIL: martinius96@gmail.com                              |*/
+/*|TESTED BOARDS: Devkit v1 DOIT, Devkitc v4                 |*/
+/*|CORE: June 2018                                           |*/
 /*|----------------------------------------------------------|*/
 #include <WiFi.h>
 #include <WiFiClientSecure.h>
