@@ -1,6 +1,8 @@
 /*|----------------------------------------------------------|*/
-/*|TEST EXAMPLE FOR HTTPS CONNECTION   - NOT VERIFYED YET    |*/
-/*|EMAIL me: martinius96@gmail.com                           |*/
+/*|WORKING EXAMPLE FOR HTTPS CONNECTION                      |*/
+/*|EMAIL: martinius96@gmail.com                              |*/
+/*|TESTED BOARDS: Devkit v1 DOIT, Devkitc v4                 |*/
+/*|CORE: June 2018                                           |*/
 /*|----------------------------------------------------------|*/
 #include <WiFi.h>
 #include <HTTPClient.h>
@@ -9,7 +11,6 @@
 #define EAP_IDENTITY "login" //if connecting from another corporation, use identity@organisation.domain in Eduroam 
 #define EAP_PASSWORD "password" //your Eduroam password
 const char* ssid = "eduroam"; // Eduroam SSID
-const char* host = "arduino.php5.sk"; //external server domain for HTTP connection after authentification
 int counter = 0;
 const char* test_root_ca= \
 "-----BEGIN CERTIFICATE-----\n" \
