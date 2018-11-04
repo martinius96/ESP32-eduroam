@@ -1,6 +1,6 @@
 /*|----------------------------------------------------------|*/
-/*|TEST EXAMPLE FOR HTTP CONNECTION   - NOT VERIFYED YET     |*/
-/*|EMAIL me: martinius96@gmail.com                           |*/
+/*|WORKING EXAMPLE FOR HTTP CONNECTION                       |*/
+/*|EMAIL: martinius96@gmail.com                              |*/
 /*|----------------------------------------------------------|*/
 #include <WiFi.h> //Wifi library
 #include <HTTPClient.h>
@@ -69,4 +69,5 @@ void loop() {
         }
 
         http.end();
+delay(5000);
 }
