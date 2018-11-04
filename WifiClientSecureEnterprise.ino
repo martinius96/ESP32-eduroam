@@ -1,7 +1,6 @@
 /*|----------------------------------------------------------|*/
 /*|WORKING EXAMPLE FOR HTTPS CONNECTION                      |*/
 /*|EMAIL me: martinius96@gmail.com                           |*/
-/*|SUPPORT for more examples: https://www.paypal.me/chlebovec|*/
 /*|----------------------------------------------------------|*/
 #include <WiFi.h>
 #include <WiFiClientSecure.h>
