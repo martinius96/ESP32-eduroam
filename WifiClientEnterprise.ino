@@ -10,6 +10,7 @@
 const char* ssid = "eduroam"; // Eduroam SSID
 const char* host = "arduino.php5.sk"; //external server domain for HTTP connection after authentification
 int counter = 0;
+WiFiClient client;
 void setup() {
   Serial.begin(115200);
   delay(10);
@@ -55,7 +56,6 @@ void loop() {
   }
   Serial.print("Connecting to website: ");
   Serial.println(host);
-  WiFiClient client;
   if (client.connect(host, 80)) {
     String url = "/rele/rele1.txt";
     client.print(String("GET ") + url + " HTTP/1.1\r\n" + "Host: " + host + "\r\n" + "User-Agent: NodeMCU\r\n" + "Connection: close\r\n\r\n");
