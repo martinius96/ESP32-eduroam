@@ -1,7 +1,6 @@
 /*|----------------------------------------------------------|*/
 /*|WORKING EXAMPLE FOR HTTP CONNECTION                       |*/
 /*|EMAIL me: martinius96@gmail.com                           |*/
-/*|SUPPORT for more examples: https://www.paypal.me/chlebovec|*/
 /*|----------------------------------------------------------|*/
 #include <WiFi.h> //Wifi library
 #include "esp_wpa2.h" //wpa2 library for connections to Enterprise networks
