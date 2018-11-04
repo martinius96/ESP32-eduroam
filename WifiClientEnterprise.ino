@@ -1,6 +1,8 @@
 /*|----------------------------------------------------------|*/
-/*|WORKING EXAMPLE FOR HTTP CONNECTION                       |*/
-/*|EMAIL me: martinius96@gmail.com                           |*/
+/*|WORKING EXAMPLE FOR HTTP CONNECTION                      |*/
+/*|EMAIL: martinius96@gmail.com                              |*/
+/*|TESTED BOARDS: Devkit v1 DOIT, Devkitc v4                 |*/
+/*|CORE: June 2018                                           |*/
 /*|----------------------------------------------------------|*/
 #include <WiFi.h> //Wifi library
 #include "esp_wpa2.h" //wpa2 library for connections to Enterprise networks
