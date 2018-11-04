@@ -1,5 +1,5 @@
 /*|----------------------------------------------------------|*/
-/*|WORKING EXAMPLE FOR HTTPS CONNECTION                      |*/
+/*|WORKING EXAMPLE FOR HTTPS AUTHORIZATION                   |*/
 /*|EMAIL: martinius96@gmail.com                              |*/
 /*|TESTED BOARDS: Devkit v1 DOIT, Devkitc v4                 |*/
 /*|CORE: June 2018                                           |*/
@@ -103,5 +103,5 @@ void loop() {
             Serial.printf("[HTTPS] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
         }
         http.end();  
-        delay(2000);
+        delay(5000);
 }
