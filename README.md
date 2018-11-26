@@ -28,6 +28,7 @@
 |Universidad de Granada (Spain)|Lolin D32 Pro|PEAP + MsCHAPv2|Working|
 |Universidad de Granada (Spain)|Lolin D32|PEAP + MsCHAPv2|Working|
 |Universidade Federal de Santa Catarina (Brazil)|xxx|EAP-TTLS + MsCHAPv2|Working|
+|University of Central Florida (Orlando, Florida)|ESP32 Built-in OLED – Heltec WiFi Kit 32|PEAP + MsCHAPv2|Working|
 
 
 # Sucessful connection
