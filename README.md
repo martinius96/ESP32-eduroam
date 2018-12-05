@@ -45,3 +45,4 @@
 * ESP32 Devmodule v4
 * Lolin D32
 * Lolin D32 Pro
+* NodeMCU-32S
