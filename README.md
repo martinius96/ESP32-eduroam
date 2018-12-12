@@ -1,13 +1,13 @@
-# ESP32-Eduroam
+# ESP32-eduroam
 # Sketch is tested under core from June 2018. Newer versions have problem with connection to Enterprise networks.
-* Eduroam wifi connection with university login identity
-* Working under Eduroam networks under FreeRadius service for 802.1x
-* Eduroam is using: PEAP + MsCHAPv2
+* wifi connection with university login identity
+* Working under eduroam networks under FreeRadius service for 802.1x
+* eduroam is using: PEAP + MsCHAPv2
 * **Inform me after you use that .ino file in your university if it is working! Email below**
-* Eduroam example with HTTP connection is now available in official repository as example named WifiClientEnterprise: https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/examples/WiFiClientEnterprise/WiFiClientEnterprise.ino
+* eduroam example with HTTP connection is now available in official repository as example named WifiClientEnterprise: https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/examples/WiFiClientEnterprise/WiFiClientEnterprise.ino
 
 # Format
-* IDENTITY = nickname@university.domain (for instance: nickname@tuke.sk)
+* IDENTITY = id@university.com (for instance: nickname@tuke.sk)
 * PASSWORD = your password :-)
 
 # Usage
