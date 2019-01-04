@@ -1,17 +1,19 @@
 # ESP32-eduroam
-# Sketch is tested under core from June 2018. Newer versions have problem with connection to Enterprise networks.
+# Sketch is tested under core from June 2018 (available in my repositories). Newer versions have problem with connection to Enterprise networks.
 * wifi connection with university login identity
 * Working under eduroam networks under FreeRadius service for 802.1x
 * eduroam is using: PEAP + MsCHAPv2
 * **Inform me after you use that .ino file in your university if it is working! Email below**
 * eduroam example with HTTP connection is now available in official repository as example named WifiClientEnterprise: https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/examples/WiFiClientEnterprise/WiFiClientEnterprise.ino
+* In this repository, there are examples for MQTT, HTTP, HTTPS connections to user applications or IoT applications - Thingspeak, IBM, Cayenne, etc.
 
 # Format
-* IDENTITY = id@university.com (for instance: nickname@tuke.sk)
-* PASSWORD = your password :-)
+* ANONYMOUS IDENTITY = anonymous@example.com (for instance: anonymous@tuke.sk)
+* IDENTITY = id@example.com (for instance: nickname@tuke.sk)
+* PASSWORD = your password
 
 # Usage
-* Change IDENTITY or use anonymous identity --> anonymous@university.domain
+* Change your identities 
 * Change password
 * Upload sketch and enjoy!
 
@@ -32,7 +34,7 @@
 |Université de Montpellier (France)|NodeMCU-32S|PEAP + MsCHAPv2|Working|
 
 
-# Sucessful connection
+# Sucessful connection (WifiClientSecure example result)
  ![alt text](https://i.nahraj.to/f/24Kc.png)
 # Unsucessful connection
  ![alt text](https://camo.githubusercontent.com/87e47d1b27f4e8ace87423e40e8edbce7983bafa/68747470733a2f2f692e6e616872616a2e746f2f662f323435572e504e47)
