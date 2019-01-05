@@ -1,0 +1,47 @@
+#######################################
+# Syntax Coloring Map for THiNXLib
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+THiNX	KEYWORD1
+THiNXLib	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+initWithAPIKey	KEYWORD2
+mqtt_callback	KEYWORD1
+mqtt_client	KEYWORD1
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+__DEBUG__	LITERAL1
+__USE_TGSM__	LITERAL1
+__USE_SPIFFS__	LITERAL1
+__ENABLE_WIFI_MIGRATION__	LITERAL1
+__USE_WIFI_MANAGER__	LITERAL1
+
+MQTT_BUFFER_SIZE	LITERAL2
+
+THINX_COMMIT_ID	LITERAL1
+THINX_MQTT_URL	LITERAL1
+THINX_CLOUD_URL	LITERAL1
+THINX_FIRMWARE_VERSION	LITERAL1
+THINX_FIRMWARE_VERSION_SHORT	LITERAL1
+THINX_APP_VERSION	LITERAL1
+THINX_OWNER	LITERAL1
+THINX_ALIAS	LITERAL1
+THINX_API_KEY	LITERAL1
+THINX_UDID	LITERAL1
+
+THINX_MQTT_PORT	LITERAL1
+THINX_API_PORT	LITERAL1
+
+THINX_PLATFORM	LITERAL1
+THINX_AUTO_UPDATE	LITERAL1
