@@ -1,3 +1,9 @@
+/*|----------------------------------------------------------|*/
+/*|ThinX Cloud ENTERPRISE connection                         |*/
+/*|EMAIL: martinius96@gmail.com                              |*/
+/*|NOT TESTED OFFICIALY YET                                  |*/
+/*|CORE: June 2018                                           |*/
+/*|----------------------------------------------------------|*/
 #include <WiFi.h>
 #include "esp_wpa2.h" //wpa2 library for connections to Enterprise networks
 #include <Arduino.h>
