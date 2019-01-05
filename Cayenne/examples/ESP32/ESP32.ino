@@ -1,7 +1,12 @@
 // This example shows how to connect to Cayenne using an ESP32 and send/receive sample data.
 // Make sure you install the ESP32 Board Package and select the correct ESP32 board before compiling.
 // To install the ESP32 Board Package follow the instructions here: https://github.com/espressif/arduino-esp32/blob/master/README.md#installation-instructions.
-
+/*|----------------------------------------------------------|*/
+/*|CAYENNE ENTERPRISE connection                             |*/
+/*|EMAIL: martinius96@gmail.com                              |*/
+/*|NOT TESTED OFFICIALY YET                                  |*/
+/*|CORE: June 2018                                           |*/
+/*|----------------------------------------------------------|*/
 //#define CAYENNE_DEBUG
 #include <CayenneMQTTESP32.h>
 #include "esp_wpa2.h"
