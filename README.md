@@ -33,11 +33,13 @@
 |University of Central Florida (Orlando, Florida)|ESP32 Built-in OLED – Heltec WiFi Kit 32|PEAP + MsCHAPv2|Working|
 |Université de Montpellier (France)|NodeMCU-32S|PEAP + MsCHAPv2|Working|
 
-
 # Sucessful connection (WifiClientSecure example result)
  ![alt text](https://i.nahraj.to/f/24Kc.png)
 # Unsucessful connection
  ![alt text](https://camo.githubusercontent.com/87e47d1b27f4e8ace87423e40e8edbce7983bafa/68747470733a2f2f692e6e616872616a2e746f2f662f323435572e504e47)
+
+# Donate for more examples
+* https://www.paypal.me/chlebovec
 
 # Contact
 * martinius96@gmail.com
