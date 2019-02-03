@@ -12,12 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *****************************************************************************/
-
- //Enterprise connection example from: Martin Chlebovec
-//Github: https://github.com/martinius96/
-//Should work under Arduino-ESP32 core June 2018
-
- #define ESP32
+/*|----------------------------------------------------------|*/
+/*|Google Cloud IoT ENTERPRISE connection                    |*/
+/*|EMAIL: martinius96@gmail.com                              |*/
+/*|NOT TESTED OFFICIALY YET                                  |*/
+/*|CORE: June 2018                                           |*/
+/*|----------------------------------------------------------|*/
+#define ESP32
 #include <Arduino.h>
 #include "esp_wpa2.h"
 #include <CloudIoTCore.h>
@@ -26,9 +27,7 @@
 #include <time.h>
 #include <rBase64.h> // If using binary messages
 
-
-
- //----------------CHANGEABLE PARAMETERS----------------
+//----------------CHANGEABLE PARAMETERS----------------
 #define EAP_ANONYMOUS_IDENTITY "anonymous@example.com"
 #define EAP_IDENTITY "id@example.com"
 #define EAP_PASSWORD "password"
@@ -38,29 +37,21 @@ const char *location = "us-central1";
 const char *registry_id = "my-registry";
 const char *device_id = "my-esp32-device";
 //----------------END CHANGEABLE PARAMETERS----------------
-
-
-
- CloudIoTCoreDevice device(project_id, location, registry_id, device_id,
-                          private_key_str);
+CloudIoTCoreDevice device(project_id, location, registry_id, device_id, private_key_str);
 CloudIoTCoreMQTTClient client(&device);
-
- boolean encodePayload = true; // set to true if using binary data
+boolean encodePayload = true; // set to true if using binary data
 long lastMsg = 0;
 char msg[20];
 int counter = 0;
-
- const int LED_PIN = 5;
-
- void callback(uint8_t *payload, unsigned int length) {
-  Serial.print("payload: ");
-  char val[length];
-  for (int i = 0; i < length; i++) {
-    Serial.print((char)payload[i]);
-    val[i] = (char)payload[i];
-  }
+const int LED_PIN = 5;
+void callback(uint8_t *payload, unsigned int length) {
+ Serial.print("payload: ");
+ char val[length];
+ for (int i = 0; i < length; i++) {
+  Serial.print((char)payload[i]);
+  val[i] = (char)payload[i];
+ }
   Serial.println();
-
    int ret = 0;
   if (ret == 0) {
     // we got '1' -> on
