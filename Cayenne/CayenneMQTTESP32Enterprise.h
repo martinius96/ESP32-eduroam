@@ -20,6 +20,6 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 
 #include <WiFi.h>
 #include "CayenneUtils/CayenneDefines.h"
-#include "CayenneMQTTWiFiClient.h"
+#include "CayenneMQTTWiFiClientEnterprise.h"
 
 #endif
