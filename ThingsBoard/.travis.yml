@@ -1,0 +1,17 @@
+sudo: false
+language: cpp
+compiler:
+  - gcc
+addons:
+  apt:
+    packages:
+    - arduino
+before_script:
+  - wget https://downloads.arduino.cc/arduino-cli/arduino-cli-0.3.2-alpha.preview-linux64.tar.bz2
+  - tar xvf arduino-cli-0.3.2-alpha.preview-linux64.tar.bz2
+  - chmod +x arduino-cli-0.3.2-alpha.preview-linux64
+  - mkdir ~/.arduino15
+  - ./arduino-cli-0.3.2-alpha.preview-linux64 core update-index
+  - ./arduino-cli-0.3.2-alpha.preview-linux64 core install arduino:avr
+script:
+  - ./test.sh
