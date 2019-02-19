@@ -1,10 +1,9 @@
 # ESP32-eduroam
-# All tested working sketches was under June 2018 ESP32 Arduino core
+# Tested with latest Arduino core and connection is Working!
 
 # This repo offers
 * Wifi connection to eduroam powered networks with university login and password
 * Supported methods: PEAP + MsCHAPv2 & EAP-TTLS + MsCHAPv2
-* **Inform me after you use that .ino file in your university if it is working! Email below**
 * In this repository, there are examples for MQTT, HTTP, HTTPS connections to user applications or IoT applications - Thingspeak, IBM, Cayenne, IBM Watson, AzureIoT, Thinx Cloud, etc.
 
 # Format
@@ -21,7 +20,7 @@
 |University|Board|Method|Result|
 |-------------|-------------| -----|------|
 |Technical University in Košice (Slovakia)|ESP32 Devkit v1|PEAP + MsCHAPv2|Working|
-|Technical University in Košice (Slovakia)|ESP32 Devmodule v4|PEAP + MsCHAPv2|Working on 6th attempt in loop|
+|Technical University in Košice (Slovakia)|ESP32 Devmodule v4|PEAP + MsCHAPv2|Working|
 |Slovak Technical University in Bratislava (Slovakia)|ESP32 Devkit v1|PEAP + MsCHAPv2|Working|
 |University of Antwerp (Belgium)|Lolin32|PEAP + MsCHAPv2|Working|
 |UPV Universitat Politècnica de València (Spain)|ESP32 Devmodule v4|PEAP + MsCHAPv2|Working|
