@@ -1,8 +1,7 @@
 /*|----------------------------------------------------------|*/
 /*|AzureIOTMQTT ENTERPRISE GET STARTED connection            |*/
 /*|EMAIL: martinius96@gmail.com                              |*/
-/*|NOT TESTED OFFICIALY YET                                  |*/
-/*|CORE: June 2018                                           |*/
+/*|WEBSITE: https://arduino.php5.sk                          |*/
 /*|----------------------------------------------------------|*/
 #include <WiFi.h>
 #include "esp_wpa2.h" //wpa2 library for connections to Enterprise networks
@@ -39,16 +38,16 @@ static void InitWifi()
   Serial.println("Connecting...");
   WiFi.disconnect(true);  //disconnect form wifi to set new wifi connection
   WiFi.mode(WIFI_STA); //init wifi mode
-  if(WiFi.status() != WL_CONNECTED){
+  if (WiFi.status() != WL_CONNECTED) {
     WiFi.begin(ssid); //connect to wifi
-  }else{
-      counter = 0;
+  } else {
+    counter = 0;
   }
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
     counter++;
-    if(counter>=60){ //after 30 seconds timeout - reset board
+    if (counter >= 60) { //after 30 seconds timeout - reset board
       ESP.restart();
     }
   }
@@ -122,7 +121,7 @@ void setup()
   Serial.begin(115200);
   Serial.println("ESP32 Device");
   Serial.println("Initializing...");
-  esp_wifi_sta_wpa2_ent_set_identity((uint8_t *)EAP_ANONYMOUS_IDENTITY, strlen(EAP_ANONYMOUS_IDENTITY)); 
+  esp_wifi_sta_wpa2_ent_set_identity((uint8_t *)EAP_ANONYMOUS_IDENTITY, strlen(EAP_ANONYMOUS_IDENTITY));
   esp_wifi_sta_wpa2_ent_set_username((uint8_t *)EAP_IDENTITY, strlen(EAP_IDENTITY));
   esp_wifi_sta_wpa2_ent_set_password((uint8_t *)EAP_PASSWORD, strlen(EAP_PASSWORD));
   esp_wpa2_config_t config = WPA2_CONFIG_INIT_DEFAULT(); //set config settings to default
@@ -153,19 +152,19 @@ void loop()
 {
   if (hasWifi)
   {
-    if (messageSending && 
+    if (messageSending &&
         (int)(millis() - send_interval_ms) >= INTERVAL)
     {
       // Send teperature data
       char messagePayload[MESSAGE_MAX_LEN];
-      float temperature = (float)random(0,50);
-      float humidity = (float)random(0, 1000)/10;
-      snprintf(messagePayload,MESSAGE_MAX_LEN, messageData, DEVICE_ID, messageCount++, temperature,humidity);
+      float temperature = (float)random(0, 50);
+      float humidity = (float)random(0, 1000) / 10;
+      snprintf(messagePayload, MESSAGE_MAX_LEN, messageData, DEVICE_ID, messageCount++, temperature, humidity);
       Serial.println(messagePayload);
       EVENT_INSTANCE* message = Esp32MQTTClient_Event_Generate(messagePayload, MESSAGE);
       Esp32MQTTClient_Event_AddProp(message, "temperatureAlert", "true");
       Esp32MQTTClient_SendEventInstance(message);
-      
+
       send_interval_ms = millis();
     }
     else
