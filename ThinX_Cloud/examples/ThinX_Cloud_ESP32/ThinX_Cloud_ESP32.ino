@@ -1,8 +1,7 @@
 /*|----------------------------------------------------------|*/
 /*|ThinX Cloud ENTERPRISE connection                         |*/
 /*|EMAIL: martinius96@gmail.com                              |*/
-/*|NOT TESTED OFFICIALY YET                                  |*/
-/*|CORE: June 2018                                           |*/
+/*|WEBSITE: https://arduino.php5.sk                          |*/
 /*|----------------------------------------------------------|*/
 #include <WiFi.h>
 #include "esp_wpa2.h" //wpa2 library for connections to Enterprise networks
@@ -30,7 +29,7 @@ void finalizeCallback () {
 }
 
 void setup() {
- esp_wifi_sta_wpa2_ent_set_identity((uint8_t *)EAP_ANONYMOUS_IDENTITY, strlen(EAP_ANONYMOUS_IDENTITY)); 
+  esp_wifi_sta_wpa2_ent_set_identity((uint8_t *)EAP_ANONYMOUS_IDENTITY, strlen(EAP_ANONYMOUS_IDENTITY));
   esp_wifi_sta_wpa2_ent_set_username((uint8_t *)EAP_IDENTITY, strlen(EAP_IDENTITY));
   esp_wifi_sta_wpa2_ent_set_password((uint8_t *)EAP_PASSWORD, strlen(EAP_PASSWORD));
   esp_wpa2_config_t config = WPA2_CONFIG_INIT_DEFAULT(); //set config settings to default
@@ -47,7 +46,7 @@ void setup() {
     delay(500);
     Serial.print(".");
     counter++;
-    if(counter>=60){ //after 30 seconds timeout - reset board
+    if (counter >= 60) { //after 30 seconds timeout - reset board
       ESP.restart();
     }
   }
@@ -61,5 +60,4 @@ void setup() {
 /* Loop must call the thx.loop() in order to pickup MQTT messages and advance the state machine. */
 void loop()
 {
-  thx.loop();
-}
+  thx.loop(
