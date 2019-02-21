@@ -1,8 +1,7 @@
 /*|----------------------------------------------------------|*/
 /*|AzureIOTMQTT ENTERPRISE connection                        |*/
 /*|EMAIL: martinius96@gmail.com                              |*/
-/*|NOT TESTED OFFICIALY YET                                  |*/
-/*|CORE: June 2018                                           |*/
+/*|WEBSITE: https://arduino.php5.sk                          |*/
 /*|----------------------------------------------------------|*/
 #include <WiFi.h>
 #include "esp_wpa2.h" //wpa2 library for connections to Enterprise networks
@@ -28,7 +27,7 @@ void setup() {
   delay(10);
   WiFi.disconnect(true);  //disconnect form wifi to set new wifi connection
   WiFi.mode(WIFI_STA); //init wifi mode
-  esp_wifi_sta_wpa2_ent_set_identity((uint8_t *)EAP_ANONYMOUS_IDENTITY, strlen(EAP_ANONYMOUS_IDENTITY)); 
+  esp_wifi_sta_wpa2_ent_set_identity((uint8_t *)EAP_ANONYMOUS_IDENTITY, strlen(EAP_ANONYMOUS_IDENTITY));
   esp_wifi_sta_wpa2_ent_set_username((uint8_t *)EAP_IDENTITY, strlen(EAP_IDENTITY));
   esp_wifi_sta_wpa2_ent_set_password((uint8_t *)EAP_PASSWORD, strlen(EAP_PASSWORD));
   esp_wpa2_config_t config = WPA2_CONFIG_INIT_DEFAULT(); //set config settings to default
@@ -38,7 +37,7 @@ void setup() {
     delay(500);
     Serial.print(".");
     counter++;
-    if(counter>=60){ //after 30 seconds timeout - reset board
+    if (counter >= 60) { //after 30 seconds timeout - reset board
       ESP.restart();
     }
   }
@@ -58,17 +57,17 @@ void setup() {
 void loop() {
   if (WiFi.status() == WL_CONNECTED) { //if we are connected to Eduroam network
     counter = 0; //reset counter
-    Serial.println("Wifi is still connected with IP: "); 
+    Serial.println("Wifi is still connected with IP: ");
     Serial.println(WiFi.localIP());   //inform user about his IP address
-  }else if (WiFi.status() != WL_CONNECTED) { //if we lost connection, retry
-    WiFi.begin(ssid);      
+  } else if (WiFi.status() != WL_CONNECTED) { //if we lost connection, retry
+    WiFi.begin(ssid);
   }
   while (WiFi.status() != WL_CONNECTED) { //during lost connection, print dots
     delay(500);
     Serial.print(".");
     counter++;
-    if(counter>=60){ //30 seconds timeout - reset board
-    ESP.restart();
+    if (counter >= 60) { //30 seconds timeout - reset board
+      ESP.restart();
     }
   }
   Serial.println("start sending events.");
@@ -78,7 +77,7 @@ void loop() {
 
     // replace the following line with your data sent to Azure IoTHub
     snprintf(buff, 128, "{\"topic\":\"iot\"}");
-    
+
     if (Esp32MQTTClient_SendEvent(buff))
     {
       Serial.println("Sending data succeed");
