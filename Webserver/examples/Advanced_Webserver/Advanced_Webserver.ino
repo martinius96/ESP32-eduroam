@@ -1,8 +1,6 @@
 /*|----------------------------------------------------------|*/
 /*|Webserver Advanced ENTERPRISE example                     |*/
 /*|EMAIL: martinius96@gmail.com                              |*/
-/*|NOT TESTED OFFICIALY YET                                  |*/
-/*|CORE: June 2018                                           |*/
 /*|----------------------------------------------------------|*/
 #include <WiFi.h>
 #include <WiFiClient.h>
