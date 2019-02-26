@@ -31,6 +31,7 @@
 |Universidade Federal de Santa Catarina (Brazil)|xxx|EAP-TTLS + MsCHAPv2|Working|
 |University of Central Florida (Orlando, Florida)|ESP32 Built-in OLED – Heltec WiFi Kit 32|PEAP + MsCHAPv2|Working|
 |Université de Montpellier (France)|NodeMCU-32S|PEAP + MsCHAPv2|Working|
+|University of Edinburgh (Scotland)|ESP-WROOM-32 Devkit|PEAP + MsCHAPv2|Working|
 
 # Sucessful connection (WifiClientSecure example result)
  ![alt text](https://i.nahraj.to/f/24Kc.png)
