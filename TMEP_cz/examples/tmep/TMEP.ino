@@ -8,7 +8,6 @@ const char* ssid = "eduroam"; // Eduroam SSID
 
 const char domain[]   = "---domain---";  // domain.tmep.cz
 const char guid[]     = "---guid---"; // mojemereni
-const byte sleep      = 1; // How often send data to the server. In minutes
 WiFiClient client;
 void setup() {
   Serial.begin(115200);
@@ -56,5 +55,5 @@ void loop() {
   client.stop();
   Serial.println();
   // Wait for another round
-  delay(sleep * 60000);
+  delay(60000);
 }
