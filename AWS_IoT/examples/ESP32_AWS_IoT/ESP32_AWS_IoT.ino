@@ -6,6 +6,7 @@
 #include <WiFi.h>
 #include <WiFiClientSecure.h>
 #include <MQTTClient.h>   //you need to install this library: https://github.com/256dpi/arduino-mqtt
+#include "esp_wpa2.h" //wpa2 library for connections to Enterprise networks
 
 char EAP_ANONYMOUS_IDENTITY[] = "anonymous@example.com";
 char EAP_IDENTITY[] = "nickname@example.com";
