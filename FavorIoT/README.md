@@ -1,3 +1,4 @@
+* https://github.com/LintangWisesa/ESP32_Favoriot - Sketch and informations from this repo
 #
 
 ![favoriot](https://www.favoriot.com/wp-content/uploads/2017/03/favoriot-1.png)
