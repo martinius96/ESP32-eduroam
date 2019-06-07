@@ -2,7 +2,7 @@
 
 ![favoriot](https://www.favoriot.com/wp-content/uploads/2017/03/favoriot-1.png)
 
-# ESP32 & Favoriot
+# ESP32 & FavorIoT
 
 ### **[Favoriot](https://www.favoriot.com/home/iotplatform)** offers an IOT platform specifically designed for any Internet of Things (IoT) projects. The platform is developed to support the integration of data from sensors and actuators on the internet. Collecting and storing data from IOT devices become much easier. Moreover, the platform also helps developers in building vertical applications without worry about the hosting. 
 
