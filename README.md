@@ -1,4 +1,6 @@
 # ESP32-eduroam
+# Buy me a coffee for more examples :)
+* https://www.paypal.me/chlebovec
 # Tested with latest Arduino core and connection is Working!
 
 # This repo offers
@@ -37,9 +39,6 @@
  ![alt text](https://i.nahraj.to/f/24Kc.png)
 # Unsucessful connection
  ![alt text](https://camo.githubusercontent.com/87e47d1b27f4e8ace87423e40e8edbce7983bafa/68747470733a2f2f692e6e616872616a2e746f2f662f323435572e504e47)
-
-# Donate for more examples
-* https://www.paypal.me/chlebovec
 
 # Contact
 * martinius96@gmail.com
