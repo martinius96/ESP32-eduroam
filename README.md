@@ -1,5 +1,5 @@
 # ESP32-eduroam
-# Buy me a coffee for more examples :)
+# Buy me a coffee for more examples :) - nobody donated yet :'(
 * https://www.paypal.me/chlebovec
 # Tested with latest Arduino core and connection is Working!
 
