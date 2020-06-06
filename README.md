@@ -1,4 +1,6 @@
 # ESP32-eduroam
+**Solution for unable to authentication via id@domain using another format**
+* https://github.com/martinius96/ESP32-eduroam/issues/4#issue-632608789
 # Buy me a coffee for more examples :)
 * https://www.paypal.me/chlebovec
 # Tested with latest Arduino core and connection is Working!
