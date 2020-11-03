@@ -37,6 +37,7 @@
 |University of Edinburgh (Scotland)|ESP-WROOM-32 Devkit|PEAP + MsCHAPv2|ed.ac.uk|Working|
 |University of Debrecen (Hungary)|NodeMCU-32S|PEAP + MsCHAPv2|unideb.hu|Working|
 |University of Applied Sciences Bielefeld (Germany)|ESP32 Devkit v1|PEAP + MsCHAPv2|fh-bielefeld.de|Working|
+|University of Liege (Belgium)|ESP32 DevkitC v4|PEAP + MsCHAPv2|uliege.be|Working|
 
 # Sucessful connection (WifiClientSecure example result)
  ![alt text](https://i.nahraj.to/f/24Kc.png)
