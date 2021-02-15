@@ -1,5 +1,9 @@
 # ESP32-eduroam
-**Solution for unable to authentication via id@domain using domain\\username format by Jim @gojimmypi**
+**Extended program implementation from @debsahu that is using CA cert:**
+* Visit his Github repo: https://github.com/debsahu/Esp32_EduWiFi
+* He have also YT video tutorial: https://www.youtube.com/watch?v=bABHeMea-P0
+
+**Solution for unable to authentication via id@domain using domain\\username AD format by Jim @gojimmypi**
 * https://github.com/martinius96/ESP32-eduroam/issues/4#issue-632608789
 # Buy me a coffee for more examples :)
 * https://www.paypal.me/chlebovec
