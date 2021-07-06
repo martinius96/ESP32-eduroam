@@ -2,8 +2,6 @@
 /*|Experimental example for eduroam connection 2021+ sketch  |*/
 /*|Sketch wasn't tested, I am not more student, can't try    |*/
 /*|Changes from @debsahu (Github) and  esp_wpa2 library ref. |*/
-/*|Root CA that issued certificate for RADIUS server tuke.sk |*/
-/*|This sketch should be valid for users@tuke.sk             |*/
 /*|Edited by: martinius96 (martinius96@gmail.com)            |*/
 /*|----------------------------------------------------------|*/
 
@@ -19,8 +17,9 @@
 //SSID NAME
 const char* ssid = "eduroam"; // Eduroam SSID
 
-//Root CA cert in .pem format from:
+//Root CA cert (DigiCert Assured ID Root CA) in .pem format from:
 //https://uvt.tuke.sk/wps/portal/uv/sluzby/bezdrotove-siete-wifi-na-tuke/prirucka-pouzivatela-bezdrotovej-siete-eduroam
+
 const static char* test_root_ca PROGMEM = \
     "-----BEGIN CERTIFICATE-----\n" \
     "MIIDtzCCAp+gAwIBAgIQDOfg5RfYRv6P5WD8G/AwOTANBgkqhkiG9w0BAQUFADBl\n" \
@@ -44,6 +43,7 @@ const static char* test_root_ca PROGMEM = \
     "H2sMNgcWfzd8qVttevESRmCD1ycEvkvOl77DZypoEd+A5wwzZr8TDRRu838fYxAe\n" \
     "+o0bJW1sj6W3YQGx0qMmoRBxna3iw/nDmVG3KwcIzi7mULKn+gpFL6Lw8g==\n" \
     "-----END CERTIFICATE-----\n";
+
 void setup() {
   Serial.begin(115200);
   delay(10);
