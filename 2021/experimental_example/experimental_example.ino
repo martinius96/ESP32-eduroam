@@ -8,14 +8,15 @@
 #include <WiFi.h> //Wifi library
 #include "esp_wpa2.h" //wpa2 library for connections to Enterprise networks
 
-//Identity of user and his organization, password
-//Available anonymous identity for federation of RADIUS servers or 1st Domain RADIUS servers
-#define EAP_ANONYMOUS_IDENTITY "anonymous@example.com"
-#define EAP_IDENTITY "nickname@example.com"
-#define EAP_PASSWORD "password"
+//Identity for user with password related to his realm (organization)
+//Available option of anonymous identity for federation of RADIUS servers or 1st Domain RADIUS servers
+
+#define EAP_ANONYMOUS_IDENTITY "anonymous@tuke.sk" //anonymous@example.com, or you can use also nickname@example.com
+#define EAP_IDENTITY "username@tuke.sk" //nickname@example.com
+#define EAP_PASSWORD "password" //password for eduroam account
 
 //SSID NAME
-const char* ssid = "eduroam"; // Eduroam SSID
+const char* ssid = "eduroam"; // eduroam SSID
 
 //Root CA cert (DigiCert Assured ID Root CA) in .pem format from:
 //https://uvt.tuke.sk/wps/portal/uv/sluzby/bezdrotove-siete-wifi-na-tuke/prirucka-pouzivatela-bezdrotovej-siete-eduroam
