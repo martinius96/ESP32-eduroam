@@ -12,7 +12,7 @@
 //Available option of anonymous identity for federation of RADIUS servers or 1st Domain RADIUS servers
 
 #define EAP_ANONYMOUS_IDENTITY "anonymous@tuke.sk" //anonymous@example.com, or you can use also nickname@example.com
-#define EAP_IDENTITY "username@tuke.sk" //nickname@example.com
+#define EAP_IDENTITY "username@tuke.sk" //nickname@example.com, at some organizations should work nickname only without realm, but it is not recommended
 #define EAP_PASSWORD "password" //password for eduroam account
 
 //SSID NAME
