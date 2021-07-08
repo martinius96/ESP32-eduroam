@@ -2,7 +2,7 @@
 /*|Experimental example for eduroam connection 2021+ sketch  |*/
 /*|Sketch wasn't tested, I am not more student, can't try    |*/
 /*|Changes from @debsahu (Github) and  esp_wpa2 library ref. |*/
-/*|Edited by: martinius96 (martinius96@gmail.com)            |*/
+/*|Edited by: Martin Chlebovec (martinius96)                 |*/
 /*|----------------------------------------------------------|*/
 
 #include <WiFi.h> //Wifi library
