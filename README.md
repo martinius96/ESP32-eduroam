@@ -42,13 +42,13 @@
 |University of Applied Sciences Bielefeld (Germany)|ESP32 Devkit v1|PEAP + MsCHAPv2|fh-bielefeld.de|Working|2018|
 |University of Liege (Belgium)|ESP32 DevkitC v4|PEAP + MsCHAPv2|uliege.be|Working|2018|
 
-# Sucessful connection (WifiClientSecure example result)
+# Successful connection example
  ![alt text](https://i.nahraj.to/f/24Kc.png)
-# Unsucessful connection
+# Unsucessful connection example
  ![alt text](https://camo.githubusercontent.com/87e47d1b27f4e8ace87423e40e8edbce7983bafa/68747470733a2f2f692e6e616872616a2e746f2f662f323435572e504e47)
 
 # Contact
-* martinius96@gmail.com
+* martinius96@gmail.com (martin.chlebovec.2@student.tuke.sk)
 
 # Tested boards
 * ESP32 Devkit v1
