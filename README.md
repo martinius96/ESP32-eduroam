@@ -6,9 +6,7 @@
 
 **Solution for unable to authentication via id@domain using domain\\username AD format by Jim @gojimmypi**
 * https://github.com/martinius96/ESP32-eduroam/issues/4#issue-632608789
-# Buy me a coffee for more examples :)
-* https://www.paypal.me/chlebovec
-# Tested with latest Arduino core and connection is Working!
+# Tested implementations were with Arduino Core 1.0.4 for ESP32!
 
 # This repo offers
 * Wifi connection to eduroam powered networks with university login and password
