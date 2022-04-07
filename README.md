@@ -27,6 +27,7 @@
 * Change your identities (anonymous + username) 
 * Change password
 * Link your local Root CA certificate (should find at your local eduroam admin page)
+* If using EAP-TTLS with client certificates, you need to link them too and call it in WiFi.begin(), see 2022 example
 * Upload sketch 
 
 # Tested locations (WifiClientSecure example)
