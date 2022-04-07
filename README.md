@@ -7,11 +7,16 @@
 **Solution for unable to authentication via id@domain using domain\\username AD format by Jim @gojimmypi**
 * https://github.com/martinius96/ESP32-eduroam/issues/4#issue-632608789
 # Tested implementations were with Arduino Core 1.0.4 for ESP32!
+* **Latest examples from 2021 and 2022 I haven't tested, I don't have more access to eduroam network**
 
 # This repo offers
-* Wifi connection to eduroam powered networks with university login and password
+* Wifi connection to eduroam powered networks with university login, anonymous identity and password
+* Anonymous identity (visible as plaintext) is used for redirect of connection from other university to your local RADIUS server if you dont want to provide your username
 * Supported methods: PEAP + MsCHAPv2 & EAP-TTLS + MsCHAPv2
-* In this repository, there are examples for MQTT, HTTP, HTTPS connections to user applications or IoT applications - Thingspeak, IBM, Cayenne, IBM Watson, AzureIoT, Thinx Cloud, etc.
+
+# Opened ports at eduroam network
+* 50, 51, 1194, 41, 4500, 1723 - **In & Out**
+* 0, 500, 1000, 47, 21, 22, 80, 443, 3128, 8080, 465, 579, 143, 993, 110, 995 - **Out**
 
 # Format
 * ANONYMOUS IDENTITY = anonymous@example.com (for instance: anonymous@tuke.sk)
@@ -19,9 +24,10 @@
 * PASSWORD = your password
 
 # Usage
-* Change your identities (anonymous + visible) 
+* Change your identities (anonymous + username) 
 * Change password
-* Upload sketch and enjoy!
+* Link your local Root CA certificate (should find at your local eduroam admin page)
+* Upload sketch 
 
 # Tested locations (WifiClientSecure example)
 |University|Board|Method|Realm|Result|Year|
@@ -48,7 +54,7 @@
  ![alt text](https://camo.githubusercontent.com/87e47d1b27f4e8ace87423e40e8edbce7983bafa/68747470733a2f2f692e6e616872616a2e746f2f662f323435572e504e47)
 
 # Contact
-* martinius96@gmail.com (martin.chlebovec.2@student.tuke.sk)
+* martinius96@gmail.com
 
 # Tested boards
 * ESP32 Devkit v1
