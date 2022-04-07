@@ -3,6 +3,7 @@
 /*|Sketch wasn't tested, I am not more student, can't try    |*/
 /*|Changes from @debsahu (Github) and  esp_wpa2 library ref. |*/
 /*|Edited by: Martin Chlebovec (martinius96)                 |*/
+/*|Compilation under 2.0.3-RC1 Arduino Core worked           |*/
 /*|----------------------------------------------------------|*/
 
 #include <WiFi.h> //Wifi library
@@ -53,13 +54,12 @@ void setup() {
   Serial.println(ssid);
   WiFi.disconnect(true);  //disconnect form wifi to set new wifi connection
   WiFi.mode(WIFI_STA); //init wifi mode
-  esp_wifi_sta_wpa2_ent_set_ca_cert((uint8_t *)test_root_ca, strlen(test_root_ca) + 1);
-  //esp_wifi_sta_wpa2_ent_set_ca_cert((uint8_t *)test_root_ca, strlen(test_root_ca));
+  esp_wifi_sta_wpa2_ent_set_ca_cert((uint8_t *)test_root_ca, strlen(test_root_ca) + 1); //used by @debsahu in his example EduWiFi
+  //esp_wifi_sta_wpa2_ent_set_ca_cert((uint8_t *)test_root_ca, strlen(test_root_ca)); //try without strlen +1 too if not working
   esp_wifi_sta_wpa2_ent_set_identity((uint8_t *)EAP_ANONYMOUS_IDENTITY, strlen(EAP_ANONYMOUS_IDENTITY));
   esp_wifi_sta_wpa2_ent_set_username((uint8_t *)EAP_IDENTITY, strlen(EAP_IDENTITY));
   esp_wifi_sta_wpa2_ent_set_password((uint8_t *)EAP_PASSWORD, strlen(EAP_PASSWORD));
-  esp_wpa2_config_t config = WPA2_CONFIG_INIT_DEFAULT(); //set config settings to default
-  esp_wifi_sta_wpa2_ent_enable(&config); //set config settings to enable function
+  esp_wifi_sta_wpa2_ent_enable();
   WiFi.begin(ssid); //connect to wifi
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
