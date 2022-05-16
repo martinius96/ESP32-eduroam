@@ -3,13 +3,13 @@
 /*|Sketch wasn't tested, I am not more student, can't try it |*/
 /*|Changes from @debsahu (Github) and  esp_wpa2 library ref. |*/
 /*|Edited by: Martin Chlebovec (martinius96)                 |*/
-/*|Compilation under 2.0.3-RC1 Arduino Core worked           |*/
+/*|Compilation under 2.0.3 Arduino Core worked               |*/
 /*|Previous stable cores are NOT usable, does not have       |*/
 /*|WiFi.begin() definition with these parameters for PEAP... |*/
 /*|----------------------------------------------------------|*/
 
 //Code based on commit by @jpswensen from 15th March 2022: https://github.com/espressif/arduino-esp32/commit/d977359e343bd1dfd83b82d14b6afc2a84fdd998
-//Commit is to 2.0.3-RC1 Arduino Core.
+//Commit is to 2.0.3-RC1 Arduino Core, used in 2.0.3 Release version of Arduino Core for ESP32
 
 #include <WiFi.h> //Wifi library
 #include "esp_wpa2.h" //wpa2 library for connections to Enterprise networks
