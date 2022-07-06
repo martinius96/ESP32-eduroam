@@ -7,6 +7,9 @@
 /*|Previous stable cores are NOT usable, does not have       |*/
 /*|WiFi.begin() definition with these parameters for PEAP... |*/
 /*|----------------------------------------------------------|*/
+/*|Let me know if you were successful in connecting to WiFi: |*/
+/*|with screenshots from Serial at martinius96@gmail.com     |*/
+/*|----------------------------------------------------------|*/
 
 //Code based on commit by @jpswensen from 15th March 2022: https://github.com/espressif/arduino-esp32/commit/d977359e343bd1dfd83b82d14b6afc2a84fdd998
 //Commit is to 2.0.3-RC1 Arduino Core, used in 2.0.3 Release version of Arduino Core for ESP32
