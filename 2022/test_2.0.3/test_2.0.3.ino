@@ -80,5 +80,5 @@ void setup() {
   Serial.println(WiFi.localIP()); //print LAN IP
 }
 void loop() {
-
+  yield();
 }
