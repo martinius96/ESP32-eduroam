@@ -194,13 +194,13 @@ nastaveným pre daný prístupový bod na strane RADIUS servera.
 <table class="table table-striped flat-table flat-table-1" style="color: black; max-width: 100%;">
 <thead>
 <tr>
-<th style="width: 50%;"><strong>Služba</strong></th>
-<th style="width: 50%;"><strong>Protokol</strong></th>
-<th style="width: 50%;"><strong>Port</strong></th>
-<th style="width: 50%;"><strong>Smer komunikácie</strong></th>
+<th style="width: 35%;"><strong>Služba</strong></th>
+<th style="width: 20%;"><strong>Protokol</strong></th>
+<th style="width: 15%;"><strong>Port</strong></th>
+<th style="width: 30%;"><strong>Smer komunikácie</strong></th>
 </tr>
 <tr>
-<td>Standard IPSec VPN</td>
+<td><b>Standard IPSec VPN</b></td>
 <td>IP (ESP)</td>
 <td>50</td>
 <td>Obojsmerne</td>
@@ -218,31 +218,31 @@ nastaveným pre daný prístupový bod na strane RADIUS servera.
 <td>Von</td>
 </tr>
 <tr>
-<td>OpenVPN 2.0</td>
+<td><b>OpenVPN 2.0</b></td>
 <td>UDP (OpenVPN)</td>
 <td>1194</td>
 <td>Obojsmerne</td>
 </tr>
 <tr>
-<td>IPv6 Tunnel broker</td>
+<td><b>IPv6 Tunnel broker</b></td>
 <td>IP</td>
 <td>41</td>
 <td>Obojsmerne</td>
 </tr>
 <tr>
-<td>IPSec NAT-Traversal</td>
+<td><b>IPSec NAT-Traversal</b></td>
 <td>UDP (IPSec)</td>
 <td>4500</td>
 <td>Obojsmerne</td>
 </tr>
 <tr>
-<td>Cisco IPSec VPNoTCP</td>
+<td><b>Cisco IPSec VPNoTCP</b></td>
 <td>TCP</td>
 <td>10000</td>
 <td>Von</td>
 </tr>
 <tr>
-<td>PPTP VPN</td>
+<td><b>PPTP VPN</b></td>
 <td>TCP (PPTP)</td>
 <td>1723</td>
 <td>Obojsmerne</td>
@@ -257,14 +257,14 @@ nastaveným pre daný prístupový bod na strane RADIUS servera.
 	
 	
 <tr>
-<td>SSH</td>
+<td><b>SSH</b></td>
 <td>TCP</td>
 <td>22</td>
 <td>Von</td>
 </tr>
 
 <tr>
-<td>HTTP</td>
+<td><b>HTTP</b></td>
 <td>TCP</td>
 <td>80</td>
 <td>Von</td>
@@ -275,6 +275,70 @@ nastaveným pre daný prístupový bod na strane RADIUS servera.
 <td>443</td>
 <td>Von</td>
 </tr>
+
+
+<tr>
+<td></td>
+<td>TCP</td>
+<td>3128</td>
+<td>Von</td>
+</tr>
+
+<tr>
+<td></td>
+<td>TCP</td>
+<td>8080</td>
+<td>Von</td>
+</tr>
+
+<tr>
+<td><b>Mail služby - odosielanie</b></td>
+<td>TCP (SMTP-SSL)</td>
+<td>465</td>
+<td>Von</td>
+</tr>
+<tr>
+<td></td>
+<td>TCP (decbsrv)</td>
+<td>579</td>
+<td>Von</td>
+</tr>
+
+<tr>
+<td><b>Mail služby - prijímanie</b></td>
+<td>TCP (IMAP)</td>
+<td>143</td>
+<td>Von</td>
+</tr>
+
+<tr>
+<td></td>
+<td>TCP (IMAP-SSL)</td>
+<td>993</td>
+<td>Von</td>
+</tr>
+
+<tr>
+<td></td>
+<td>TCP (POP3)</td>
+<td>110</td>
+<td>Von</td>
+</tr>
+
+<tr>
+<td></td>
+<td>TCP (POP3-SSL)</td>
+<td>995</td>
+<td>Von</td>
+</tr>
+
+<tr>
+<td><b>FTP</b></td>
+<td>TCP</td>
+<td>21</td>
+<td>Von</td>
+</tr>
+
 </table>
 
 
