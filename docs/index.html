@@ -27,6 +27,92 @@
   			border: 1px solid black;
 		}
 	</style>
+<style>
+
+.aa_h2{
+  font:100 5rem/1 Roboto;
+  text-transform: uppercase;
+}
+table{
+   background: #fff;
+}
+table,thead,tbody,tfoot,tr, td,th{
+  text-align: center;
+  margin: auto;
+  border:1px solid #dedede;
+  padding: 1rem;
+  width: 50%;
+}
+.table    { display: table; width: 100%; }
+.tr       { display: table-row;  }
+.thead    { display: table-header-group }
+.tbody    { display: table-row-group }
+.tfoot    { display: table-footer-group }
+.col      { display: table-column }
+.colgroup { display: table-column-group }
+.td, .th   { display: table-cell; width: 50%; }
+.caption  { display: table-caption }
+
+.table,
+.thead,
+.tbody,
+.tfoot,
+.tr,
+.td,
+.th{
+  text-align: center;
+  margin: auto;
+  padding: 1rem;
+}
+.table{
+  background: #fff;
+  margin: auto;
+  border:none;
+  padding: 0;
+  margin-bottom: 5rem;
+}
+
+.th{
+  font-weight: 700;
+  border:1px solid #dedede;
+  &:nth-child(odd){
+    border-right:none;
+  }
+}
+.td{
+  font-weight: 300;
+  border:1px solid #dedede;
+  border-top:none;
+  &:nth-child(odd){
+    border-right:none;
+  }
+}
+
+.aa_htmlTable{
+  background: tomato;
+  padding: 5rem;
+  display: table;
+  width: 100%;
+  height: 100vh;
+  vertical-align: middle;
+}
+.aa_css{
+  background: skyblue;
+  padding: 5rem;
+  display: table;
+  width: 100%;
+  height: 100vh;
+  vertical-align: middle;
+}
+
+.aa_ahmadawais{
+  display: table;
+  width: 100%;
+  font: 100 1.2rem/2 Roboto;
+  margin: 5rem auto;
+}
+    
+  </style>
 </head>
 <body>
 	<div class="container">
@@ -39,7 +125,7 @@
 					<strong>Ak ste sketch vyskúšali a pripojenie vám funguje, prosím potvrďte mi to na mail (pomôže aj screenshot zo Serial monitoru): </strong>martinius96@gmail.com
 				</div>
 <hr>
-<center><h1>ESP32 - eduroam</h1></center>
+<center><h1>Princíp siete eduroam</h1></center>
 <hr>
 <p style = "text-align: justify;">
 Sieť eduroam (education roaming) je celosvetová počítačová infraštruktúra, ktorá je
@@ -99,6 +185,102 @@ RADIUS servera, prenosovým protokolom s uloženým reťazcom - vzájomne zdieľ
 tajomstvom. Tento textový reťazec je pre každý prístupový bod iný, avšak musí sa zhodovať s
 nastaveným pre daný prístupový bod na strane RADIUS servera.
 </p>
+<hr>
+<center><h1>Povolené porty - eduroam</h1></center>
+<hr>
+<div class="alert alert-success">
+	<strong>Používateľ po úspešnom pripojení do WiFi siete eduroam môže využívať tieto sieťové porty:</strong>
+</div>	
+<table class="table table-striped flat-table flat-table-1" style="color: black; max-width: 100%;">
+<thead>
+<tr>
+<th style="width: 50%;"><strong>Služba</strong></th>
+<th style="width: 50%;"><strong>Protokol</strong></th>
+<th style="width: 50%;"><strong>Port</strong></th>
+<th style="width: 50%;"><strong>Smer komunikácie</strong></th>
+</tr>
+<tr>
+<td>Standard IPSec VPN</td>
+<td>IP (ESP)</td>
+<td>50</td>
+<td>Obojsmerne</td>
+</tr>
+<tr>
+<td></td>
+<td>IP (AH)</td>
+<td>51</td>
+<td>Obojsmerne</td>
+</tr>
+<tr>
+<td></td>
+<td>UDP(IKE)</td>
+<td>500</td>
+<td>Von</td>
+</tr>
+<tr>
+<td>OpenVPN 2.0</td>
+<td>UDP (OpenVPN)</td>
+<td>1194</td>
+<td>Obojsmerne</td>
+</tr>
+<tr>
+<td>IPv6 Tunnel broker</td>
+<td>IP</td>
+<td>41</td>
+<td>Obojsmerne</td>
+</tr>
+<tr>
+<td>IPSec NAT-Traversal</td>
+<td>UDP (IPSec)</td>
+<td>4500</td>
+<td>Obojsmerne</td>
+</tr>
+<tr>
+<td>Cisco IPSec VPNoTCP</td>
+<td>TCP</td>
+<td>10000</td>
+<td>Von</td>
+</tr>
+<tr>
+<td>PPTP VPN</td>
+<td>TCP (PPTP)</td>
+<td>1723</td>
+<td>Obojsmerne</td>
+</tr>
+<tr>
+<td></td>
+<td>IP (GRE)</td>
+<td>47</td>
+<td>Von</td>
+</tr>
+
+	
+	
+<tr>
+<td>SSH</td>
+<td>TCP</td>
+<td>22</td>
+<td>Von</td>
+</tr>
+
+<tr>
+<td>HTTP</td>
+<td>TCP</td>
+<td>80</td>
+<td>Von</td>
+</tr>
+<tr>
+<td></td>
+<td>TCP</td>
+<td>443</td>
+<td>Von</td>
+</tr>
+</table>
+
+
+
+
+
  </div>
 		</div>
 </div>
