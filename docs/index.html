@@ -33,16 +33,71 @@
   		<div class="row">
     			<div class="col-sm-12">
 				<div class="alert alert-success">
-					<strong>Source codes for ESP32 are available in: </strong><a href="https://github.com/martinius96/ESP32-eduroam">Github project repository</a>
+					<strong>Zdrojové kódy pre mikrokontróler ESP32 sú dostupné: </strong><a href="https://github.com/martinius96/ESP32-eduroam">TU v Github repozitári</a>
 				</div>	
 				<div class="alert alert-danger">
-					<strong>If you have tested sketch, please provide me information if it was working or not (with screenshots from Serial montior): </strong>martinius96@gmail.com
+					<strong>Ak ste sketch vyskúšali a pripojenie vám funguje, prosím potvrďte mi to na mail (pomôže aj screenshot zo Serial monitoru): </strong>martinius96@gmail.com
 				</div>
 <hr>
-<center><h1>ESP32 - eduroam connection sketch</h1></center>
+<center><h1>ESP32 - eduroam</h1></center>
 <hr>
 <p style = "text-align: justify;">
-
+Sieť eduroam (education roaming) je celosvetová počítačová infraštruktúra, ktorá je
+implementovaná vo vedeckej a univerzitnej sfére. Pôvodná myšlienka projektu - siete eduroam
+vznikla v Holandsku v roku 2002. Sieť je navrhnutá pre celosvetové využívanie študentmi,
+vedeckými pracovníkmi a pedagógmi.
+Je tvorená sieťou RADIUS (označenie protokolu, servera používajúceho tento protokol pre
+overenie) serverov, ktoré overujú používateľov, ktorí sa chcú do siete pripojiť a využívať služby
+internetu a LAN (lokálna sieť - Local Area Network) siete. Táto infraštruktúra RADIUS serverov
+sa často označuje aj ako federácia. RADIUS server je zariadenie poskytujúce služby AAA:
+autentizácie, autorizácie a tarifikácie (AAA - Authentication, Authorization, and Accounting).
+Zariadenie je fyzický prvok siete, ktorý overuje prihlasovacie údaje používateľov, ktorí sa do siete
+pripájajú.
+Každý používateľ siete eduroam sa vie pripojiť do siete z akejkoľvek organizácie na svete, ktorá je
+v projekte eduroam zaradená bez nutnosti meniť konfiguračné nastavenia sieťového profilu. Všetky
+prístupové body vysielajú SSID eduroam. Používateľ sa tak
+pripája, spôsobom, akoby bol v domácej organizácii. Každá organizácia v sieti eduroam sa musí
+prispôsobiť určitým pravidlám, ktoré sú jednoznačne definované, čo umožňuje ich vzájomnú
+kompatibilitu.
+Každý používateľ siete
+eduroam je jednoznačne priradený k svojej organizácii prostredníctvom realmu. Realm je
+definovaný v tvare @organizácia.doména. V prípade Technickej univerzity v Košiciach je to realm
+@tuke.sk pre študentov, pedagógov i vedeckých pracovníkov.
+</p>
+<hr>
+<p style = "text-align: justify;">
+Existujú ešte dva vyžiadané parametre, ktoré sú pri prihlasovaní do WiFi siete
+eduroam potrebné. Ak sa používateľ prihlasuje do siete eduroam, musí zadať identitu, ktorá je
+tvorená jeho menom, alebo identifikátorom a realmom organizácie. Druhým parametrom, ktorý používateľ pri
+prihlasovaní do WiFi siete používa je jeho heslo. Heslo je uložené v databáze v čitateľnej podobe,
+alebo vo formáte NTLM hashu.
+Tieto spôsoby zadania hesla je možné aplikovať aj na strane klienta snažiaceho sa o prístup do
+siete.
+V prípade, že sa používateľ prihlasuje do siete eduroam vo vlastnej organizácii, môže použiť len
+prihlasovacie meno, nevyžaduje sa identifikátor s realmom. Tento spôsob je však možné aplikovať iba vo vlastnej organizácii, keďže sa z inej
+organizácie klient nepripojí, nakoľko neexistuje realm v identite používateľa.
+Na Slovensku sieť eduroam prevádzkuje rada univerzít, konektivitu medzi nimi a do internetu
+zabezpečuje združenie SANET. 
+<hr>
+<b>Každý klient pri pripojení do siete eduroam musí prekonať dve fázy:</b>
+<li>1. Autentizácia - preukázanie identity a hesla prostredníctvom supplicanta</li>
+<li>2. Autorizácia - odpoveď RADIUS servera Povoľ prístup / Zamietni prístup</li>
+Ak používateľ zlyhá pri preukázaní identity a hesla, autorizácia sa vykoná s výsledkom zakáž
+prístup, klientovi nie je pridelená IP adresa a nemôže využívať služby internetu a LAN siete. Pokus
+môže opakovať.
+V prípade, že klient, ktorý je autentizovaný a autorizovaný vykonáva zakázanú aktivitu, je možné
+zablokovať iba jeho fyzickú MAC adresu prostredníctvom
+smerovačov, prípadne realm pre všetkých používateľov danej organizácie prostredníctvom
+RADIUS servera. Nakoľko klient môže využiť anonymnú identitu,
+organizácia, kde sa klient pripája do siete eduroam nevie meno používateľa, dokáže získať iba tento
+identifikačný reťazec z domácej organizácie, avšak vysielanie tohto reťazca nie je nutnosťou.
+RADIUS server siete eduroam je v organizáciách najčastejšie v softvérovej konfigurácii
+operačného systému Linux Debian s rozšírením FreeRADIUS.
+Okrem nastavenia RADIUS serverov na štandard siete eduroam sa vyžaduje aj nastavenie a
+overenie dôveryhodných prístupových bodov. Prístupové body obsahujú konfiguráciu s adresou
+RADIUS servera, prenosovým protokolom s uloženým reťazcom - vzájomne zdieľaným
+tajomstvom. Tento textový reťazec je pre každý prístupový bod iný, avšak musí sa zhodovať s
+nastaveným pre daný prístupový bod na strane RADIUS servera.
 </p>
  </div>
 		</div>
