@@ -176,7 +176,8 @@ zablokovať iba jeho fyzickú MAC adresu prostredníctvom
 smerovačov, prípadne realm pre všetkých používateľov danej organizácie prostredníctvom
 RADIUS servera. Nakoľko klient môže využiť anonymnú identitu,
 organizácia, kde sa klient pripája do siete eduroam nevie meno používateľa, dokáže získať iba tento
-identifikačný reťazec z domácej organizácie, avšak vysielanie tohto reťazca nie je nutnosťou.
+identifikačný reťazec z domácej organizácie, avšak vysielanie tohto reťazca nie je nutnosťou. 
+Od roku 2017 je možné zablokovať aj reťazec Chargeable user identity, ktorá používateľa zablokuje v sieti eduroam, každý používateľ má tento parameter iný.
 RADIUS server siete eduroam je v organizáciách najčastejšie v softvérovej konfigurácii
 operačného systému Linux Debian s rozšírením FreeRADIUS.
 Okrem nastavenia RADIUS serverov na štandard siete eduroam sa vyžaduje aj nastavenie a
@@ -195,9 +196,9 @@ nastaveným pre daný prístupový bod na strane RADIUS servera.
 <thead>
 <tr>
 <th style="width: 35%;"><strong>Služba</strong></th>
-<th style="width: 20%;"><strong>Protokol</strong></th>
+<th style="width: 25%;"><strong>Protokol</strong></th>
 <th style="width: 15%;"><strong>Port</strong></th>
-<th style="width: 30%;"><strong>Smer komunikácie</strong></th>
+<th style="width: 25%;"><strong>Smer komunikácie</strong></th>
 </tr>
 <tr>
 <td><b>Standard IPSec VPN</b></td>
