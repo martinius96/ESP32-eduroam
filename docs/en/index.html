@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Primary Meta Tags -->
+	<title>ESP32 eduroam WiFi connection - WPA/WPA2 Enterprise</title>
+	<meta name="description" content="ESP32 connection to the eduroam WiFi network of the WPA/WPA2 Enterprise standard via identity and password">
+	<meta name="robots" content="index, follow">
+	<link rel="icon" type="image/png" href="https://martinius96.github.io/termostat-ethernet/favicon.png">
+	<link rel="sitemap" type="application/xml" title="Sitemap" href="../../sitemap.xml" />
+	<meta name="google-site-verification" content="UwZZh2EXv3iWUAi_1Z0hLxVCz6ySJ4UdY_BPoLtejwo" />    	
+	<meta property='fb:admins' content='100001242570317'>
+    	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+    		window.smartlook||(function(d) {
+    			var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
+    			var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
+    			c.charset='utf-8';c.src='https://rec.smartlook.com/recorder.js';h.appendChild(c);
+    		})(document);
+    		smartlook('init', 'db50efe9fff280a17db52b82be221240cbbd3dbe');
+	</script>    
+	<style>
+		table, th, td {
+  			border: 1px solid black;
+		}
+	</style>
+<style>
+
+.aa_h2{
+  font:100 5rem/1 Roboto;
+  text-transform: uppercase;
+}
+table{
+   background: #fff;
+}
+table,thead,tbody,tfoot,tr, td,th{
+  text-align: center;
+  margin: auto;
+  border:1px solid #dedede;
+  padding: 1rem;
+  width: 50%;
+}
+.table    { display: table; width: 100%; }
+.tr       { display: table-row;  }
+.thead    { display: table-header-group }
+.tbody    { display: table-row-group }
+.tfoot    { display: table-footer-group }
+.col      { display: table-column }
+.colgroup { display: table-column-group }
+.td, .th   { display: table-cell; width: 50%; }
+.caption  { display: table-caption }
+
+.table,
+.thead,
+.tbody,
+.tfoot,
+.tr,
+.td,
+.th{
+  text-align: center;
+  margin: auto;
+  padding: 1rem;
+}
+.table{
+  background: #fff;
+  margin: auto;
+  border:none;
+  padding: 0;
+  margin-bottom: 5rem;
+}
+
+.th{
+  font-weight: 700;
+  border:1px solid #dedede;
+  &:nth-child(odd){
+    border-right:none;
+  }
+}
+.td{
+  font-weight: 300;
+  border:1px solid #dedede;
+  border-top:none;
+  &:nth-child(odd){
+    border-right:none;
+  }
+}
+
+.aa_htmlTable{
+  background: tomato;
+  padding: 5rem;
+  display: table;
+  width: 100%;
+  height: 100vh;
+  vertical-align: middle;
+}
+.aa_css{
+  background: skyblue;
+  padding: 5rem;
+  display: table;
+  width: 100%;
+  height: 100vh;
+  vertical-align: middle;
+}
+
+.aa_ahmadawais{
+  display: table;
+  width: 100%;
+  font: 100 1.2rem/2 Roboto;
+  margin: 5rem auto;
+}
+    
+  </style>
+</head>
+<body>
+	<div class="container">
+  		<div class="row">
+    			<div class="col-sm-12">
+				<div class="alert alert-success">
+					<strong>Source codes for the ESP32 microcontroller are available: </strong><a href="https://github.com/martinius96/ESP32-eduroam">ERE in the Github repository</a>
+				</div>	
+				<div class="alert alert-danger">
+					<strong>If you tried the sketch and the connection works for you, please confirm it by email (a screenshot from the Serial monitor will also help): </strong>martinius96@gmail.com
+				</div>
+<hr>
+<center><h1>The principle of the eduroam network</h1></center>
+<hr>
+<p style = "text-align: justify;">
+The eduroam network (education roaming) is a worldwide computer infrastructure that is
+implemented in the scientific and university sphere. The original idea of the project - the eduroam network
+was established in the Netherlands in 2002. The network is designed for worldwide use by students,
+scientific workers and teachers.
+It consists of a network of RADIUS servers that authenticate users who want to connect to the network and use services
+internet and LAN network. This infrastructure of RADIUS servers
+is often referred to as a federation. A RADIUS server is a device providing AAA services:
+authentication, authorization and billing (AAA - Authentication, Authorization, and Accounting).
+A device is a physical element of a network that verifies the credentials of users entering the network
+they connect.
+Every user of the eduroam network can connect to the network from any organization in the world that is
+included in the eduroam project without the need to change the configuration settings of the network profile. All of them
+access points broadcast SSID eduroam. The user does so
+connects, in a way as if it were in a home organization. Every organization in the eduroam network must
+adapt to certain rules that are clearly defined, which allows them to interact
+compatibility.
+Every network user
+eduroam is uniquely assigned to its organization through a realm. Realm is
+defined in the form @organization.domain. In the case of the Technical University in Košice, it is the realm
+@tuke.sk for students, teachers and researchers.
+</p>
+<hr>
+<p style = "text-align: justify;">
+There are two more requested parameters, which are when logging into the WiFi network
+eduroam required. If a user logs into the eduroam network, they must enter an identity that is
+formed by his name or identifier and the realm of the organization. The second parameter, which the user at
+logging into the WiFi network uses his password. The password is stored in the database in a readable form,
+or in NTLM hash format.
+These ways of entering the password can also be applied on the side of the client trying to access the
+networks.
+If the user logs into the eduroam network in his own organization, he can only use
+login name, no identifier with realm required. However, this method can only be applied in one's own organization, since from another
+organization, the client will not connect, as there is no realm in the user's identity.
+In Slovakia, the eduroam network is operated by the Council of Universities, the connectivity between them and to the Internet
+is provided by the SANET association.
+<hr>
+<b>Each client must go through two phases when connecting to the eduroam network:</b>
+<li>1. Authentication - proof of identity and password through the supplicant</li>
+<li>2. Authorization - RADIUS server response Allow access / Deny access</li>
+</p>
+<p style = "text-align: justify;">
+If the user fails to prove the identity and password, the authorization is performed with the result of deny
+access, the client is not assigned an IP address and cannot use Internet and LAN network services. An attempt
+can repeat.
+In the event that a client that is authenticated and authorized performs a prohibited activity, it is possible
+block only its physical MAC address via
+routers, or realm for all users of the given organization via
+RADIUS server. Since the client can use an anonymous identity,
+the organization where the client connects to the eduroam network does not know the username, it can only get this one
+an identification string from the home organization, but broadcasting this string is not a must.
+Since 2017, it is also possible to block the Chargeable user identity chain, which blocks the user in the eduroam network, each user has a different parameter.
+The RADIUS server of the eduroam network is most often in the software configuration in organizations
+of the Linux Debian operating system with the FreeRADIUS extension.
+In addition to setting the RADIUS servers to the eduroam network standard, it is also required to set a
+authentication of trusted access points. Access points contain a configuration with an address
+RADIUS server, a transmission protocol with a stored string - mutually shared
+a secret. This text string is different for each access point, but must match the
+set for the given access point on the RADIUS server side.
+</p>
+<hr>
+<center><h1>Allowed ports - eduroam</h1></center>
+<hr>
+<div class="alert alert-success">
+	<strong>After successfully connecting to the eduroam WiFi network, the user can use these network ports:</strong>
+</div>	
+<table class="table table-striped flat-table flat-table-1" style="color: black; max-width: 100%;">
+<thead>
+<tr>
+<th style="width: 35%;"><strong>Service</strong></th>
+<th style="width: 25%;"><strong>Protocol</strong></th>
+<th style="width: 15%;"><strong>Port</strong></th>
+<th style="width: 25%;"><strong>Direction of communication</strong></th>
+</tr>
+<tr>
+<td><b>Standard IPSec VPN</b></td>
+<td>IP (ESP)</td>
+<td>50</td>
+<td>Bi-directional</td>
+</tr>
+<tr>
+<td></td>
+<td>IP (AH)</td>
+<td>51</td>
+<td>Bi-directional</td>
+</tr>
+<tr>
+<td></td>
+<td>UDP(IKE)</td>
+<td>500</td>
+<td>Out</td>
+</tr>
+<tr>
+<td><b>OpenVPN 2.0</b></td>
+<td>UDP (OpenVPN)</td>
+<td>1194</td>
+<td>Bi-directional</td>
+</tr>
+<tr>
+<td><b>IPv6 Tunnel broker</b></td>
+<td>IP</td>
+<td>41</td>
+<td>Bi-directional</td>
+</tr>
+<tr>
+<td><b>IPSec NAT-Traversal</b></td>
+<td>UDP (IPSec)</td>
+<td>4500</td>
+<td>Bi-directional</td>
+</tr>
+<tr>
+<td><b>Cisco IPSec VPNoTCP</b></td>
+<td>TCP</td>
+<td>10000</td>
+<td>Out</td>
+</tr>
+<tr>
+<td><b>PPTP VPN</b></td>
+<td>TCP (PPTP)</td>
+<td>1723</td>
+<td>Bi-directional</td>
+</tr>
+<tr>
+<td></td>
+<td>IP (GRE)</td>
+<td>47</td>
+<td>Out</td>
+</tr>
+
+	
+	
+<tr>
+<td><b>SSH</b></td>
+<td>TCP</td>
+<td>22</td>
+<td>Out</td>
+</tr>
+
+<tr>
+<td><b>HTTP</b></td>
+<td>TCP</td>
+<td>80</td>
+<td>Von</td>
+</tr>
+<tr>
+<td></td>
+<td>TCP</td>
+<td>443</td>
+<td>Out</td>
+</tr>
+
+
+<tr>
+<td></td>
+<td>TCP</td>
+<td>3128</td>
+<td>Out</td>
+</tr>
+
+<tr>
+<td></td>
+<td>TCP</td>
+<td>8080</td>
+<td>Out</td>
+</tr>
+
+<tr>
+<td><b>Mail services - sending</b></td>
+<td>TCP (SMTP-SSL)</td>
+<td>465</td>
+<td>Out</td>
+</tr>
+
+<tr>
+<td></td>
+<td>TCP (decbsrv)</td>
+<td>579</td>
+<td>Out</td>
+</tr>
+
+<tr>
+<td><b>Mail services - receiving</b></td>
+<td>TCP (IMAP)</td>
+<td>143</td>
+<td>Out</td>
+</tr>
+
+<tr>
+<td></td>
+<td>TCP (IMAP-SSL)</td>
+<td>993</td>
+<td>Out</td>
+</tr>
+
+<tr>
+<td></td>
+<td>TCP (POP3)</td>
+<td>110</td>
+<td>Out</td>
+</tr>
+
+<tr>
+<td></td>
+<td>TCP (POP3-SSL)</td>
+<td>995</td>
+<td>Out</td>
+</tr>
+
+<tr>
+<td><b>FTP</b></td>
+<td>TCP</td>
+<td>21</td>
+<td>Out</td>
+</tr>
+
+</table>
+<hr>
+<center><h1>Source code for ESP32 - Core 2.0.3+</h1></center>
+<hr>
+<pre style="background-color:#E67E22;">
+/*|----------------------------------------------------------|*/
+/*|Experimental example for eduroam connection               |*/
+/*|Sketch wasn't tested, I am not more student, can't try it |*/
+/*|Changes from @debsahu (Github) and  esp_wpa2 library ref. |*/
+/*|Edited by: Martin Chlebovec (martinius96)                 |*/
+/*|Compilation under 2.0.3 Arduino Core worked               |*/
+/*|Previous stable cores are NOT usable, does not have       |*/
+/*|WiFi.begin() definition with these parameters for PEAP... |*/
+/*|----------------------------------------------------------|*/
+/*|Let me know if you were successful in connecting to WiFi: |*/
+/*|with screenshots from Serial at martinius96@gmail.com     |*/
+/*|----------------------------------------------------------|*/
+
+//Code based on commit by @jpswensen from 15th March 2022: https://github.com/espressif/arduino-esp32/commit/d977359e343bd1dfd83b82d14b6afc2a84fdd998
+//Commit is to 2.0.3-RC1 Arduino Core, used in 2.0.3 Release version of Arduino Core for ESP32
+
+#include &lt;WiFi.h> //Wifi library
+#include "esp_wpa2.h" //wpa2 library for connections to Enterprise networks
+
+//Identity for user with password related to his realm (organization)
+//Available option of anonymous identity for federation of RADIUS servers or 1st Domain RADIUS servers
+
+#define EAP_ANONYMOUS_IDENTITY "anonymous@tuke.sk" //anonymous@example.com, or you can use also nickname@example.com
+#define EAP_IDENTITY "username@tuke.sk" //nickname@example.com, at some organizations should work nickname only without realm, but it is not recommended
+#define EAP_PASSWORD "password" //password for eduroam account
+
+//SSID NAME
+const char* ssid = "eduroam"; // eduroam SSID
+
+//Intermediate CA cert (GEANT OV RSA CA 4) in .pem format
+//Used for WiFi connection as trusted CA that issued certificate for wifi.uvt.tuke.sk
+const static char* test_root_ca PROGMEM = \
+    "-----BEGIN CERTIFICATE-----\n" \
+    "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\n" \
+    "-----END CERTIFICATE-----\n";
+
+//Root CA cert (USERTrust RSA Certification Authority) in .pem format
+//Use if connection not successful with Intermediate CA above
+/*
+  const static char* test_root_ca PROGMEM = \
+  "-----BEGIN CERTIFICATE-----\n" \
+  "MIIF3jCCA8agAwIBAgIQAf1tMPyjylGoG7xkDjUDLTANBgkqhkiG9w0BAQwFADCB\n" \
+  "iDELMAkGA1UEBhMCVVMxEzARBgNVBAgTCk5ldyBKZXJzZXkxFDASBgNVBAcTC0pl\n" \
+  "cnNleSBDaXR5MR4wHAYDVQQKExVUaGUgVVNFUlRSVVNUIE5ldHdvcmsxLjAsBgNV\n" \
+  "BAMTJVVTRVJUcnVzdCBSU0EgQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkwHhcNMTAw\n" \
+  "MjAxMDAwMDAwWhcNMzgwMTE4MjM1OTU5WjCBiDELMAkGA1UEBhMCVVMxEzARBgNV\n" \
+  "BAgTCk5ldyBKZXJzZXkxFDASBgNVBAcTC0plcnNleSBDaXR5MR4wHAYDVQQKExVU\n" \
+  "aGUgVVNFUlRSVVNUIE5ldHdvcmsxLjAsBgNVBAMTJVVTRVJUcnVzdCBSU0EgQ2Vy\n" \
+  "dGlmaWNhdGlvbiBBdXRob3JpdHkwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIK\n" \
+  "AoICAQCAEmUXNg7D2wiz0KxXDXbtzSfTTK1Qg2HiqiBNCS1kCdzOiZ/MPans9s/B\n" \
+  "3PHTsdZ7NygRK0faOca8Ohm0X6a9fZ2jY0K2dvKpOyuR+OJv0OwWIJAJPuLodMkY\n" \
+  "tJHUYmTbf6MG8YgYapAiPLz+E/CHFHv25B+O1ORRxhFnRghRy4YUVD+8M/5+bJz/\n" \
+  "Fp0YvVGONaanZshyZ9shZrHUm3gDwFA66Mzw3LyeTP6vBZY1H1dat//O+T23LLb2\n" \
+  "VN3I5xI6Ta5MirdcmrS3ID3KfyI0rn47aGYBROcBTkZTmzNg95S+UzeQc0PzMsNT\n" \
+  "79uq/nROacdrjGCT3sTHDN/hMq7MkztReJVni+49Vv4M0GkPGw/zJSZrM233bkf6\n" \
+  "c0Plfg6lZrEpfDKEY1WJxA3Bk1QwGROs0303p+tdOmw1XNtB1xLaqUkL39iAigmT\n" \
+  "Yo61Zs8liM2EuLE/pDkP2QKe6xJMlXzzawWpXhaDzLhn4ugTncxbgtNMs+1b/97l\n" \
+  "c6wjOy0AvzVVdAlJ2ElYGn+SNuZRkg7zJn0cTRe8yexDJtC/QV9AqURE9JnnV4ee\n" \
+  "UB9XVKg+/XRjL7FQZQnmWEIuQxpMtPAlR1n6BB6T1CZGSlCBst6+eLf8ZxXhyVeE\n" \
+  "Hg9j1uliutZfVS7qXMYoCAQlObgOK6nyTJccBz8NUvXt7y+CDwIDAQABo0IwQDAd\n" \
+  "BgNVHQ4EFgQUU3m/WqorSs9UgOHYm8Cd8rIDZsswDgYDVR0PAQH/BAQDAgEGMA8G\n" \
+  "A1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQEMBQADggIBAFzUfA3P9wF9QZllDHPF\n" \
+  "Up/L+M+ZBn8b2kMVn54CVVeWFPFSPCeHlCjtHzoBN6J2/FNQwISbxmtOuowhT6KO\n" \
+  "VWKR82kV2LyI48SqC/3vqOlLVSoGIG1VeCkZ7l8wXEskEVX/JJpuXior7gtNn3/3\n" \
+  "ATiUFJVDBwn7YKnuHKsSjKCaXqeYalltiz8I+8jRRa8YFWSQEg9zKC7F4iRO/Fjs\n" \
+  "8PRF/iKz6y+O0tlFYQXBl2+odnKPi4w2r78NBc5xjeambx9spnFixdjQg3IM8WcR\n" \
+  "iQycE0xyNN+81XHfqnHd4blsjDwSXWXavVcStkNr/+XeTWYRUc+ZruwXtuhxkYze\n" \
+  "Sf7dNXGiFSeUHM9h4ya7b6NnJSFd5t0dCy5oGzuCr+yDZ4XUmFF0sbmZgIn/f3gZ\n" \
+  "XHlKYC6SQK5MNyosycdiyA5d9zZbyuAlJQG03RoHnHcAP9Dc1ew91Pq7P8yF1m9/\n" \
+  "qS3fuQL39ZeatTXaw2ewh0qpKJ4jjv9cJ2vhsE/zB+4ALtRZh8tSQZXq9EfX7mRB\n" \
+  "VXyNWQKV3WKdwrnuWih0hKWbt5DHDAff9Yk2dDLWKMGwsAvgnEzDHNb842m1R0aB\n" \
+  "L6KCq9NjRHDEjf8tM7qtj3u1cIiuPhnPQCjY/MiQu12ZIvVS5ljFH4gxQ+6IHdfG\n" \
+  "jjxDah2nGN59PRbxYvnKkKj9\n" \
+  "-----END CERTIFICATE-----\n";
+*/
+
+void setup() {
+  Serial.begin(115200);
+  delay(10);
+  Serial.println();
+  Serial.print(F("Connecting to network: "));
+  Serial.println(ssid);
+  WiFi.disconnect(true);  //disconnect form wifi to set new wifi connection
+  WiFi.mode(WIFI_STA); //init wifi mode
+  WiFi.begin(ssid, WPA2_AUTH_PEAP, EAP_ANONYMOUS_IDENTITY, EAP_IDENTITY, EAP_PASSWORD, test_root_ca); //with CERTIFICATE
+  //WiFi.begin(ssid, WPA2_AUTH_PEAP, EAP_ANONYMOUS_IDENTITY, EAP_IDENTITY, EAP_PASSWORD); //without CERTIFICATE
+
+  // Example: a cert-file WPA2 Enterprise with PEAP
+  //WiFi.begin(ssid, WPA2_AUTH_PEAP, EAP_IDENTITY, EAP_USERNAME, EAP_PASSWORD, test_root_ca, client_cert, client_key);
+
+  // Example: TLS with cert-files and no password
+  //WiFi.begin(ssid, WPA2_AUTH_TLS, EAP_IDENTITY, NULL, NULL, test_root_ca, client_cert, client_key);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(F("."));
+  }
+  Serial.println("");
+  Serial.println(F("WiFi is connected!"));
+  Serial.println(F("IP address set: "));
+  Serial.println(WiFi.localIP()); //print LAN IP
+}
+void loop() {
+  yield();
+}
+
+</pre>
+
+
+
+ </div>
+		</div>
+</div>
+</body>
+</html>
