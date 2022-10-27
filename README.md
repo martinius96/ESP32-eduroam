@@ -1,13 +1,4 @@
 # ESP32-eduroam
-**Extended program implementation from @debsahu that is using CA cert:**
-* Visit his Github repo: https://github.com/debsahu/Esp32_EduWiFi
-* He have also YT video tutorial: https://www.youtube.com/watch?v=bABHeMea-P0
-* All questions related to his program implementation address to him please
-
-**Solution for unable to authentication via id@domain using domain\\username AD format by Jim @gojimmypi**
-* https://github.com/martinius96/ESP32-eduroam/issues/4#issue-632608789
-# Tested implementations were with Arduino Core 1.0.4 for ESP32!
-* **Latest examples from 2021 and 2022 I haven't tested, I don't have more access to eduroam network**
 
 # This repo offers
 * Wifi connection to eduroam powered networks with university login, anonymous identity and password
