@@ -23,6 +23,7 @@
 
 # Tested locations 2022-2023
 * Without certificate connection should work if there is in RADIUS server configuration set **exception for old and special devices**
+
 |University|Reported by|Result|Realm|Note|
 |-------------|-------------|-----|------|------|
 |Karlsruhe University of applied science (Germany)|@HeinzAlberto|Working|@h-ka.de|Without certificate|
