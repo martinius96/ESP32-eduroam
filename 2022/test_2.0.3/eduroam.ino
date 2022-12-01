@@ -13,6 +13,7 @@
 
 //Code based on commit by @jpswensen from 15th March 2022: https://github.com/espressif/arduino-esp32/commit/d977359e343bd1dfd83b82d14b6afc2a84fdd998
 //Commit is to 2.0.3-RC1 Arduino Core, used in 2.0.3 Release version of Arduino Core for ESP32
+//Sketch is compatible for ESP32 boards only. It will not compile for any other microcontroller as esp_wpa2.h is part of Arduino Core for ESP32.
 
 #include <WiFi.h> //Wifi library
 #include "esp_wpa2.h" //wpa2 library for connections to Enterprise networks
@@ -28,7 +29,8 @@
 const char* ssid = "eduroam"; // eduroam SSID
 
 //Intermediate CA cert (GEANT OV RSA CA 4) in .pem format
-//Used for WiFi connection as trusted CA that issued certificate for wifi.uvt.tuke.sk
+//Used for WiFi connection as trusted CA that issued certificate for wifi.uvt.tuke.sk - Technical university in Košice (Slovakia)
+//THIS CERTIFICATE WILL NOT WORK FOR OTHER UNIVERSITIES AND ORGANISATIONS!
 const static char* test_root_ca PROGMEM = \
     "-----BEGIN CERTIFICATE-----\n" \
     "MIIG5TCCBM2gAwIBAgIRANpDvROb0li7TdYcrMTz2+AwDQYJKoZIhvcNAQEMBQAw\n" \
@@ -113,7 +115,6 @@ const static char* test_root_ca PROGMEM = \
 void setup() {
   Serial.begin(115200);
   delay(10);
-  Serial.println();
   Serial.print(F("Connecting to network: "));
   Serial.println(ssid);
   WiFi.disconnect(true);  //disconnect form wifi to set new wifi connection
