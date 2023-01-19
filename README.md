@@ -28,6 +28,7 @@
 |-------------|-------------|-----|------|------|
 |Karlsruhe University of applied science (Germany)|@HeinzAlberto|Working|@h-ka.de|Without certificate|
 |University of Tuscia (Italy)|@paluigi|Working|@students.unitus.it / @unitus.it|Without certificate|
+|Hogeschool Rotterdam (Netherlands)|@iamstephenkerr|Working|@hr.nl|Without certificate, ESP32-C3 board!|
 
 
 # Successful connection example
@@ -44,3 +45,4 @@
 * Lolin D32
 * Lolin D32 Pro
 * NodeMCU-32S
+* Xiao Seeed Studio ESP32-C3
