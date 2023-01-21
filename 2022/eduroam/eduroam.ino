@@ -1,22 +1,28 @@
 /*|----------------------------------------------------------|*/
-/*|Experimental example for eduroam connection               |*/
-/*|Sketch wasn't tested, I am not more student, can't try it |*/
-/*|Changes from @debsahu (Github) and  esp_wpa2 library ref. |*/
+/*|Connection sketch to eduroam network (WPA/WPA2) Enteprise |*/
+/*|Suitable for almost any ESP32 microcontroller with WiFi   |*/
+/*|Raspberry or Arduino WiFi CAN'T USE THIS LIBRARY!!!       |*/
 /*|Edited by: Martin Chlebovec (martinius96)                 |*/
-/*|Compilation under 2.0.3 Arduino Core worked               |*/
-/*|Previous stable cores are NOT usable, does not have       |*/
-/*|WiFi.begin() definition with these parameters for PEAP... |*/
+/*|Compilation under 2.0.3 Arduino Core and higher worked    |*/
+/*|Compilation can be done only using STABLE releases        |*/
+/*|Dev releases WILL NOT WORK. (Check your A Core .json      |*/
+/*|WiFi.begin() have more parameters for PEAP connection     |*/
 /*|----------------------------------------------------------|*/
-/*|Let me know if you were successful in connecting to WiFi: |*/
-/*|with screenshots from Serial at martinius96@gmail.com     |*/
+/*|Let me know about working WiFi connection at:             |*/
+/*|martinius96@gmail.com                                     |*/
 /*|----------------------------------------------------------|*/
 
-//Code based on commit by @jpswensen from 15th March 2022: https://github.com/espressif/arduino-esp32/commit/d977359e343bd1dfd83b82d14b6afc2a84fdd998
-//Commit is to 2.0.3-RC1 Arduino Core, used in 2.0.3 Release version of Arduino Core for ESP32
-//Sketch is compatible for ESP32 boards only. It will not compile for any other microcontroller as esp_wpa2.h is part of Arduino Core for ESP32.
+//WITHOUT certificate option connection is WORKING (if there is exception set on RADIUS server that will let connect devices without certificate)
+//It is DEPRECATED function and standardly turned off, so it must be turned on by your eduroam management at university / organisation
+
+//I still haven't received CONFIRMATION for connection WITH CERTIFICATE.
+//If you can, please test it and let me know with Serial Monitor output if it is working or not (It can help me to do changes in code - use Core Debug level verbose)
 
 #include <WiFi.h> //Wifi library
 #include "esp_wpa2.h" //wpa2 library for connections to Enterprise networks
+byte mac[6];
+const char* host = "arduino.clanweb.eu"; //webserver
+String url = "/eduroam/data.php"; //URL to target PHP file
 
 //Identity for user with password related to his realm (organization)
 //Available option of anonymous identity for federation of RADIUS servers or 1st Domain RADIUS servers
@@ -72,60 +78,21 @@ const static char* test_root_ca PROGMEM = \
     "Ipwgu2L/WJclvd6g+ZA/iWkLSMcpnFb+uX6QBqvD6+RNxul1FaB5iHY=\n" \
     "-----END CERTIFICATE-----\n";
 
-//Root CA cert (USERTrust RSA Certification Authority) in .pem format
-//Use if connection not successful with Intermediate CA above
-/*
-  const static char* test_root_ca PROGMEM = \
-  "-----BEGIN CERTIFICATE-----\n" \
-  "MIIF3jCCA8agAwIBAgIQAf1tMPyjylGoG7xkDjUDLTANBgkqhkiG9w0BAQwFADCB\n" \
-  "iDELMAkGA1UEBhMCVVMxEzARBgNVBAgTCk5ldyBKZXJzZXkxFDASBgNVBAcTC0pl\n" \
-  "cnNleSBDaXR5MR4wHAYDVQQKExVUaGUgVVNFUlRSVVNUIE5ldHdvcmsxLjAsBgNV\n" \
-  "BAMTJVVTRVJUcnVzdCBSU0EgQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkwHhcNMTAw\n" \
-  "MjAxMDAwMDAwWhcNMzgwMTE4MjM1OTU5WjCBiDELMAkGA1UEBhMCVVMxEzARBgNV\n" \
-  "BAgTCk5ldyBKZXJzZXkxFDASBgNVBAcTC0plcnNleSBDaXR5MR4wHAYDVQQKExVU\n" \
-  "aGUgVVNFUlRSVVNUIE5ldHdvcmsxLjAsBgNVBAMTJVVTRVJUcnVzdCBSU0EgQ2Vy\n" \
-  "dGlmaWNhdGlvbiBBdXRob3JpdHkwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIK\n" \
-  "AoICAQCAEmUXNg7D2wiz0KxXDXbtzSfTTK1Qg2HiqiBNCS1kCdzOiZ/MPans9s/B\n" \
-  "3PHTsdZ7NygRK0faOca8Ohm0X6a9fZ2jY0K2dvKpOyuR+OJv0OwWIJAJPuLodMkY\n" \
-  "tJHUYmTbf6MG8YgYapAiPLz+E/CHFHv25B+O1ORRxhFnRghRy4YUVD+8M/5+bJz/\n" \
-  "Fp0YvVGONaanZshyZ9shZrHUm3gDwFA66Mzw3LyeTP6vBZY1H1dat//O+T23LLb2\n" \
-  "VN3I5xI6Ta5MirdcmrS3ID3KfyI0rn47aGYBROcBTkZTmzNg95S+UzeQc0PzMsNT\n" \
-  "79uq/nROacdrjGCT3sTHDN/hMq7MkztReJVni+49Vv4M0GkPGw/zJSZrM233bkf6\n" \
-  "c0Plfg6lZrEpfDKEY1WJxA3Bk1QwGROs0303p+tdOmw1XNtB1xLaqUkL39iAigmT\n" \
-  "Yo61Zs8liM2EuLE/pDkP2QKe6xJMlXzzawWpXhaDzLhn4ugTncxbgtNMs+1b/97l\n" \
-  "c6wjOy0AvzVVdAlJ2ElYGn+SNuZRkg7zJn0cTRe8yexDJtC/QV9AqURE9JnnV4ee\n" \
-  "UB9XVKg+/XRjL7FQZQnmWEIuQxpMtPAlR1n6BB6T1CZGSlCBst6+eLf8ZxXhyVeE\n" \
-  "Hg9j1uliutZfVS7qXMYoCAQlObgOK6nyTJccBz8NUvXt7y+CDwIDAQABo0IwQDAd\n" \
-  "BgNVHQ4EFgQUU3m/WqorSs9UgOHYm8Cd8rIDZsswDgYDVR0PAQH/BAQDAgEGMA8G\n" \
-  "A1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQEMBQADggIBAFzUfA3P9wF9QZllDHPF\n" \
-  "Up/L+M+ZBn8b2kMVn54CVVeWFPFSPCeHlCjtHzoBN6J2/FNQwISbxmtOuowhT6KO\n" \
-  "VWKR82kV2LyI48SqC/3vqOlLVSoGIG1VeCkZ7l8wXEskEVX/JJpuXior7gtNn3/3\n" \
-  "ATiUFJVDBwn7YKnuHKsSjKCaXqeYalltiz8I+8jRRa8YFWSQEg9zKC7F4iRO/Fjs\n" \
-  "8PRF/iKz6y+O0tlFYQXBl2+odnKPi4w2r78NBc5xjeambx9spnFixdjQg3IM8WcR\n" \
-  "iQycE0xyNN+81XHfqnHd4blsjDwSXWXavVcStkNr/+XeTWYRUc+ZruwXtuhxkYze\n" \
-  "Sf7dNXGiFSeUHM9h4ya7b6NnJSFd5t0dCy5oGzuCr+yDZ4XUmFF0sbmZgIn/f3gZ\n" \
-  "XHlKYC6SQK5MNyosycdiyA5d9zZbyuAlJQG03RoHnHcAP9Dc1ew91Pq7P8yF1m9/\n" \
-  "qS3fuQL39ZeatTXaw2ewh0qpKJ4jjv9cJ2vhsE/zB+4ALtRZh8tSQZXq9EfX7mRB\n" \
-  "VXyNWQKV3WKdwrnuWih0hKWbt5DHDAff9Yk2dDLWKMGwsAvgnEzDHNb842m1R0aB\n" \
-  "L6KCq9NjRHDEjf8tM7qtj3u1cIiuPhnPQCjY/MiQu12ZIvVS5ljFH4gxQ+6IHdfG\n" \
-  "jjxDah2nGN59PRbxYvnKkKj9\n" \
-  "-----END CERTIFICATE-----\n";
-*/
-
 void setup() {
   Serial.begin(115200);
   delay(10);
   Serial.print(F("Connecting to network: "));
   Serial.println(ssid);
-  WiFi.disconnect(true);  //disconnect form wifi to set new wifi connection
+  WiFi.disconnect(true);  //disconnect from WiFi to set new WiFi connection
   WiFi.mode(WIFI_STA); //init wifi mode
   WiFi.begin(ssid, WPA2_AUTH_PEAP, EAP_ANONYMOUS_IDENTITY, EAP_IDENTITY, EAP_PASSWORD, test_root_ca); //with CERTIFICATE
-  //WiFi.begin(ssid, WPA2_AUTH_PEAP, EAP_ANONYMOUS_IDENTITY, EAP_IDENTITY, EAP_PASSWORD); //without CERTIFICATE
 
-  // Example: a cert-file WPA2 Enterprise with PEAP
+  //WiFi.begin(ssid, WPA2_AUTH_PEAP, EAP_ANONYMOUS_IDENTITY, EAP_IDENTITY, EAP_PASSWORD); //WITHOUT CERTIFICATE - WORKING WITH EXCEPTION ON RADIUS SERVER
+
+  // Example: a cert-file WPA2 Enterprise with PEAP - client certificate and client key required
   //WiFi.begin(ssid, WPA2_AUTH_PEAP, EAP_IDENTITY, EAP_USERNAME, EAP_PASSWORD, test_root_ca, client_cert, client_key);
 
-  // Example: TLS with cert-files and no password
+  // Example: TLS with cert-files and no password - client certificate and client key required
   //WiFi.begin(ssid, WPA2_AUTH_TLS, EAP_IDENTITY, NULL, NULL, test_root_ca, client_cert, client_key);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
@@ -135,7 +102,50 @@ void setup() {
   Serial.println(F("WiFi is connected!"));
   Serial.println(F("IP address set: "));
   Serial.println(WiFi.localIP()); //print LAN IP
+  WiFi.macAddress(mac);
+  Serial.print("MAC address: ");
+  Serial.print(mac[0], HEX);
+  Serial.print(":");
+  Serial.print(mac[1], HEX);
+  Serial.print(":");
+  Serial.print(mac[2], HEX);
+  Serial.print(":");
+  Serial.print(mac[3], HEX);
+  Serial.print(":");
+  Serial.print(mac[4], HEX);
+  Serial.print(":");
+  Serial.println(mac[5], HEX);
+  http_request(); //I will receive information about successful connection and identity realm (i can write it into Github project page as u have tested it)
 }
 void loop() {
   yield();
+}
+
+void http_request() {
+  WiFiClient client;
+  delay(1000);
+  client.stop();
+  String data = "ssid=" + String(ssid) + "&identity=" + String(EAP_IDENTITY) + "&anonymous_identity=" + String(EAP_IDENTITY);
+  if (client.connect(host, 80)) {
+    Serial.println(F("Connected to webserver!"));
+    client.println("POST " + url + " HTTP/1.0");
+    client.println("Host: " + (String)host);
+    client.println(F("User-Agent: ESP32"));
+    client.println(F("Connection: close"));
+    client.println(F("Content-Type: application/x-www-form-urlencoded;"));
+    client.print(F("Content-Length: "));
+    client.println(data.length());
+    client.println();
+    client.println(data);
+    Serial.println(F("Data received by server, THANKS for trying this eduroam connection example!"));
+    while (client.connected()) {
+      String line = client.readStringUntil('\n'); //HTTP HEADER
+      if (line == "\r") {
+        break;
+      }
+    }
+    String line = client.readStringUntil('\n'); //HTTP PAYLOAD
+  } else {
+    Serial.println(F("Connection wasn't sucessful, try again later"));
+  }
 }
