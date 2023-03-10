@@ -30,6 +30,7 @@
 |University of Tuscia (Italy)|@paluigi|Working|@students.unitus.it / @unitus.it|Without certificate|
 |Hogeschool Rotterdam (Netherlands)|@iamstephenkerr|Working|@hr.nl|Without certificate, ESP32-C3 board!|
 |University of Konstanz (Germany)|Frieder|Working|@uni-konstanz.de|Without certificate|
+|Norwegian University of Science and Technology (Norway)|Even|Working|@ntnu.no|Without certificate|
 
 
 # Successful connection example
