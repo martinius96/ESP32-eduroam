@@ -31,6 +31,7 @@
 |Hogeschool Rotterdam (Netherlands)|@iamstephenkerr|Working|@hr.nl|Without certificate, ESP32-C3 board!|
 |University of Konstanz (Germany)|Frieder|Working|@uni-konstanz.de|Without certificate|
 |Norwegian University of Science and Technology (Norway)|Even|Working|@ntnu.no|Without certificate|
+|TU Dortmund University|@Chasethechicken|Working|@tu-dortmund.de|Without certificate|
 
 
 # Successful connection example
