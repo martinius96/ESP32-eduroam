@@ -30,6 +30,7 @@ String url = "/eduroam/data.php"; //URL to target PHP file
 #define EAP_ANONYMOUS_IDENTITY "anonymous@tuke.sk" //anonymous@example.com, or you can use also nickname@example.com
 #define EAP_IDENTITY "username@tuke.sk" //nickname@example.com, at some organizations should work nickname only without realm, but it is not recommended
 #define EAP_PASSWORD "password" //password for eduroam account
+#define EAP_USERNAME "username.tuke.sk" // the Username is the same as the Identity in most eduroam networks.
 
 //SSID NAME
 const char* ssid = "eduroam"; // eduroam SSID
@@ -37,7 +38,7 @@ const char* ssid = "eduroam"; // eduroam SSID
 //Intermediate CA cert (GEANT OV RSA CA 4) in .pem format
 //Used for WiFi connection as trusted CA that issued certificate for wifi.uvt.tuke.sk - Technical university in Košice (Slovakia)
 //THIS CERTIFICATE WILL NOT WORK FOR OTHER UNIVERSITIES AND ORGANISATIONS!
-const static char* test_root_ca PROGMEM = \
+/* const static char* test_root_ca PROGMEM = \
     "-----BEGIN CERTIFICATE-----\n" \
     "MIIG5TCCBM2gAwIBAgIRANpDvROb0li7TdYcrMTz2+AwDQYJKoZIhvcNAQEMBQAw\n" \
     "gYgxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpOZXcgSmVyc2V5MRQwEgYDVQQHEwtK\n" \
@@ -76,7 +77,7 @@ const static char* test_root_ca PROGMEM = \
     "vBYIi1k2ThVh0Dx88BbF9YiP84dd8Fkn5wbE6FxXYJ287qfRTgmhePecPc73Yrzt\n" \
     "apdRcsKVGkOpaTIJP/l+lAHRLZxk/dUtyN95G++bOSQqnOCpVPabUGl2E/OEyFrp\n" \
     "Ipwgu2L/WJclvd6g+ZA/iWkLSMcpnFb+uX6QBqvD6+RNxul1FaB5iHY=\n" \
-    "-----END CERTIFICATE-----\n";
+    "-----END CERTIFICATE-----\n"; */
 
 void setup() {
   Serial.begin(115200);
@@ -84,9 +85,11 @@ void setup() {
   Serial.print(F("Connecting to network: "));
   Serial.println(ssid);
   WiFi.disconnect(true);  //disconnect from WiFi to set new WiFi connection
-  WiFi.mode(WIFI_STA); //init wifi mode
-  WiFi.begin(ssid, WPA2_AUTH_PEAP, EAP_ANONYMOUS_IDENTITY, EAP_IDENTITY, EAP_PASSWORD, test_root_ca); //with CERTIFICATE
-
+  //WiFi.mode(WIFI_STA); //init wifi mode - Seems not necessary anymore.
+  WiFi.begin(ssid, WPA2_AUTH_PEAP, EAP_ANONYMOUS_IDENTITY, EAP_IDENTITY, EAP_PASSWORD, test_root_ca); //with CERTIFICATE 
+  // Servers without Certificate like Bielefeld works this way, see https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/examples/WiFiClientEnterprise/WiFiClientEnterprise.ino Line 30.
+  WiFi.begin(ssid, WPA2_AUTH_PEAP, EAP_IDENTITY, EAP_USERNAME, EAP_PASSWORD); // without CERTIFICATE you can comment out the test_root_ca on top. Seems like root CA is included?
+  // The below does NOT work for eduroam like Bielefeld, as the ANONYMOUS IDENTITY gets confused with the IDENTITY! 
   //WiFi.begin(ssid, WPA2_AUTH_PEAP, EAP_ANONYMOUS_IDENTITY, EAP_IDENTITY, EAP_PASSWORD); //WITHOUT CERTIFICATE - WORKING WITH EXCEPTION ON RADIUS SERVER
 
   // Example: a cert-file WPA2 Enterprise with PEAP - client certificate and client key required
