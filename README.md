@@ -1,4 +1,6 @@
 # ESP32-eduroam
+* **From September 2023, repo is unmaintained, project archived.**
+* No more changes will be made in example codes
 
 # This repo offers
 * Wifi connection to eduroam powered networks with university login, anonymous identity and password
