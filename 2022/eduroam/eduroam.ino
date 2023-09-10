@@ -5,28 +5,20 @@
 /*|Edited by: Martin Chlebovec (martinius96)                 |*/
 /*|Compilation under 2.0.3 Arduino Core and higher worked    |*/
 /*|Compilation can be done only using STABLE releases        |*/
-/*|Dev releases WILL NOT WORK. (Check your A Core .json      |*/
+/*|Dev releases WILL NOT WORK. (Check your Ard. Core .json)  |*/
 /*|WiFi.begin() have more parameters for PEAP connection     |*/
-/*|----------------------------------------------------------|*/
-/*|Let me know about working WiFi connection at:             |*/
-/*|martinius96@gmail.com                                     |*/
 /*|----------------------------------------------------------|*/
 
 //WITHOUT certificate option connection is WORKING (if there is exception set on RADIUS server that will let connect devices without certificate)
 //It is DEPRECATED function and standardly turned off, so it must be turned on by your eduroam management at university / organisation
 
-//I still haven't received CONFIRMATION for connection WITH CERTIFICATE.
-//If you can, please test it and let me know with Serial Monitor output if it is working or not (It can help me to do changes in code - use Core Debug level verbose)
+//Connection with certificate WASN'T CONFIRMED ever, so probably that option is NOT WORKING
 
 #include <WiFi.h> //Wifi library
 #include "esp_wpa2.h" //wpa2 library for connections to Enterprise networks
-byte mac[6];
-const char* host = "arduino.clanweb.eu"; //webserver
-String url = "/eduroam/data.php"; //URL to target PHP file
 
 //Identity for user with password related to his realm (organization)
 //Available option of anonymous identity for federation of RADIUS servers or 1st Domain RADIUS servers
-
 #define EAP_ANONYMOUS_IDENTITY "anonymous@tuke.sk" //anonymous@example.com, or you can use also nickname@example.com
 #define EAP_IDENTITY "username@tuke.sk" //nickname@example.com, at some organizations should work nickname only without realm, but it is not recommended
 #define EAP_PASSWORD "password" //password for eduroam account
@@ -85,12 +77,8 @@ void setup() {
   Serial.print(F("Connecting to network: "));
   Serial.println(ssid);
   WiFi.disconnect(true);  //disconnect from WiFi to set new WiFi connection
-  //WiFi.mode(WIFI_STA); //init wifi mode - Seems not necessary anymore.
-  WiFi.begin(ssid, WPA2_AUTH_PEAP, EAP_ANONYMOUS_IDENTITY, EAP_IDENTITY, EAP_PASSWORD, test_root_ca); //with CERTIFICATE 
-  // Servers without Certificate like Bielefeld works this way, see https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/examples/WiFiClientEnterprise/WiFiClientEnterprise.ino Line 30.
-  WiFi.begin(ssid, WPA2_AUTH_PEAP, EAP_IDENTITY, EAP_USERNAME, EAP_PASSWORD); // without CERTIFICATE you can comment out the test_root_ca on top. Seems like root CA is included?
-  // The below does NOT work for eduroam like Bielefeld, as the ANONYMOUS IDENTITY gets confused with the IDENTITY! 
-  //WiFi.begin(ssid, WPA2_AUTH_PEAP, EAP_ANONYMOUS_IDENTITY, EAP_IDENTITY, EAP_PASSWORD); //WITHOUT CERTIFICATE - WORKING WITH EXCEPTION ON RADIUS SERVER
+  //WiFi.begin(ssid, WPA2_AUTH_PEAP, EAP_ANONYMOUS_IDENTITY, EAP_IDENTITY, EAP_PASSWORD, test_root_ca); //with CERTIFICATE 
+  WiFi.begin(ssid, WPA2_AUTH_PEAP, EAP_IDENTITY, EAP_USERNAME, EAP_PASSWORD); // without CERTIFICATE, RADIUS server EXCEPTION "for old devices" required
 
   // Example: a cert-file WPA2 Enterprise with PEAP - client certificate and client key required
   //WiFi.begin(ssid, WPA2_AUTH_PEAP, EAP_IDENTITY, EAP_USERNAME, EAP_PASSWORD, test_root_ca, client_cert, client_key);
@@ -105,50 +93,8 @@ void setup() {
   Serial.println(F("WiFi is connected!"));
   Serial.println(F("IP address set: "));
   Serial.println(WiFi.localIP()); //print LAN IP
-  WiFi.macAddress(mac);
-  Serial.print("MAC address: ");
-  Serial.print(mac[0], HEX);
-  Serial.print(":");
-  Serial.print(mac[1], HEX);
-  Serial.print(":");
-  Serial.print(mac[2], HEX);
-  Serial.print(":");
-  Serial.print(mac[3], HEX);
-  Serial.print(":");
-  Serial.print(mac[4], HEX);
-  Serial.print(":");
-  Serial.println(mac[5], HEX);
-  http_request(); //I will receive information about successful connection and identity realm (i can write it into Github project page as u have tested it)
-}
-void loop() {
-  yield();
 }
 
-void http_request() {
-  WiFiClient client;
-  delay(1000);
-  client.stop();
-  String data = "ssid=" + String(ssid) + "&identity=" + String(EAP_IDENTITY) + "&anonymous_identity=" + String(EAP_IDENTITY);
-  if (client.connect(host, 80)) {
-    Serial.println(F("Connected to webserver!"));
-    client.println("POST " + url + " HTTP/1.0");
-    client.println("Host: " + (String)host);
-    client.println(F("User-Agent: ESP32"));
-    client.println(F("Connection: close"));
-    client.println(F("Content-Type: application/x-www-form-urlencoded;"));
-    client.print(F("Content-Length: "));
-    client.println(data.length());
-    client.println();
-    client.println(data);
-    Serial.println(F("Data received by server, THANKS for trying this eduroam connection example!"));
-    while (client.connected()) {
-      String line = client.readStringUntil('\n'); //HTTP HEADER
-      if (line == "\r") {
-        break;
-      }
-    }
-    String line = client.readStringUntil('\n'); //HTTP PAYLOAD
-  } else {
-    Serial.println(F("Connection wasn't sucessful, try again later"));
-  }
+void loop() {
+  yield();
 }
